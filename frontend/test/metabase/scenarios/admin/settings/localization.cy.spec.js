@@ -1,6 +1,6 @@
 import { restore, withSampleDataset, signInAsAdmin } from "__support__/cypress";
 
-describe("scenarios > admin > permissions", () => {
+describe.skip("scenarios > admin > permissions", () => {
   before(restore);
   beforeEach(signInAsAdmin);
 

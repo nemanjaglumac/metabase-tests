@@ -7,14 +7,15 @@ import {
 } from "__support__/cypress";
 
 // [quarantine] flaky
-describe.skip("scenarios > admin > settings", () => {
+describe("scenarios > admin > settings", () => {
   before(restore);
   beforeEach(signInAsAdmin);
 
-  it("should surface an error when validation for any field fails (metabase#4506)", () => {
+  it.only("should surface an error when validation for any field fails (metabase#4506)", () => {
     const BASE_URL = Cypress.config().baseUrl;
     const DOMAIN_AND_PORT = BASE_URL.replace("http://", "");
-    const ERR_MESSAGE = `Invalid site URL: "${BASE_URL}!"`;
+    const WRONG_STRING = "!foo"
+    const ERR_MESSAGE = `Invalid site URL: "${BASE_URL}${WRONG_STRING}"`;
 
     cy.server();
     cy.route("PUT", "/api/setting/site-url").as("url");
@@ -24,7 +25,7 @@ describe.skip("scenarios > admin > settings", () => {
     // Needed to strip down protocol from the url to accomodate our UI (<select> PORT | <input> DOMAIN_AND_PORT)
     cy.findByDisplayValue(DOMAIN_AND_PORT) // findByDisplayValue comes from @testing-library/cypress
       .click()
-      .type("!")
+      .type(WRONG_STRING, {delay: 100})
       .blur();
 
     cy.wait("@url")

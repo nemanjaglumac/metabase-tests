@@ -1,6 +1,6 @@
 import { restore, signInAsAdmin } from "__support__/cypress";
 
-describe("scenarios > admin > spinner", () => {
+describe.skip("scenarios > admin > spinner", () => {
   before(restore);
   beforeEach(signInAsAdmin);
 
