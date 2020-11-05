@@ -14,8 +14,6 @@ describe("scenarios > admin > settings", () => {
   it.only("should surface an error when validation for any field fails (metabase#4506)", () => {
     const BASE_URL = Cypress.config().baseUrl;
     const DOMAIN_AND_PORT = BASE_URL.replace("http://", "");
-    const WRONG_STRING = "!foo"
-    const ERR_MESSAGE = `Invalid site URL: "${BASE_URL}${WRONG_STRING}"`;
 
     cy.server();
     cy.route("PUT", "/api/setting/site-url").as("url");
@@ -25,20 +23,20 @@ describe("scenarios > admin > settings", () => {
     // Needed to strip down protocol from the url to accomodate our UI (<select> PORT | <input> DOMAIN_AND_PORT)
     cy.findByDisplayValue(DOMAIN_AND_PORT) // findByDisplayValue comes from @testing-library/cypress
       .click()
-      .type(WRONG_STRING, {delay: 100})
+      .type("foo", {delay: 100})
       .blur();
 
     cy.wait("@url")
       .wait("@url") // cy.wait("@url.2") doesn't work for some reason
       .should(xhr => {
         expect(xhr.status).to.eq(500);
-        expect(xhr.response.body.cause).to.eq(ERR_MESSAGE);
+        expect(xhr.response.body.cause).to.match(/^Invalid site URL/);
       });
 
     // NOTE: This test is not concerned with HOW we style the error message - only that there is one.
     //       If we update UI in the future (for example: we show an error within a popup/modal), the test in current form could fail.
     cy.log("**Making sure we display an error message in UI**");
-    cy.get(".SaveStatus").contains(`Error: ${ERR_MESSAGE}`);
+    cy.get(".SaveStatus").contains(/^Error: Invalid site URL/);
   });
 
   it("should render the proper auth options", () => {
