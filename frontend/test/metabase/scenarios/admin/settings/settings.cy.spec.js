@@ -6,12 +6,11 @@ import {
   popover,
 } from "__support__/cypress";
 
-// [quarantine] flaky
 describe("scenarios > admin > settings", () => {
   before(restore);
   beforeEach(signInAsAdmin);
 
-  it.only("should surface an error when validation for any field fails (metabase#4506)", () => {
+  it("should surface an error when validation for any field fails (metabase#4506)", () => {
     const BASE_URL = Cypress.config().baseUrl;
     const DOMAIN_AND_PORT = BASE_URL.replace("http://", "");
 
