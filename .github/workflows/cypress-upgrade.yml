@@ -54,7 +54,7 @@ jobs:
         name: uberjar
         path: './target/uberjar/metabase.jar'
 
-  test-cypress-upgrade-v550-1:
+  test-cypress-upgrade-v550-2:
     runs-on: ubuntu-20.04
     timeout-minutes: 45
     needs: build-uberjar
