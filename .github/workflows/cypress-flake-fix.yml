@@ -51,7 +51,7 @@ jobs:
 
     - run: ./bin/build version
 
-    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/dashboard/
+    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/question/
       name: Run Cypress tests
       env:
         TERM: xterm
@@ -92,7 +92,7 @@ jobs:
 
     - run: ./bin/build version
 
-    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/dashboard/
+    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/question/
       name: Run Cypress tests
       env:
         TERM: xterm
@@ -133,7 +133,7 @@ jobs:
 
     - run: ./bin/build version
 
-    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/dashboard/
+    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/question/
       name: Run Cypress tests
       env:
         TERM: xterm
@@ -174,7 +174,7 @@ jobs:
 
     - run: ./bin/build version
 
-    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/dashboard/
+    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/question/
       name: Run Cypress tests
       env:
         TERM: xterm
@@ -215,7 +215,7 @@ jobs:
 
     - run: ./bin/build version
 
-    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/dashboard/
+    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/question/
       name: Run Cypress tests
       env:
         TERM: xterm
@@ -256,7 +256,7 @@ jobs:
 
     - run: ./bin/build version
 
-    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/dashboard/
+    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/question/
       name: Run Cypress tests
       env:
         TERM: xterm
@@ -297,7 +297,7 @@ jobs:
 
     - run: ./bin/build version
 
-    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/dashboard/
+    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/question/
       name: Run Cypress tests
       env:
         TERM: xterm
@@ -338,7 +338,7 @@ jobs:
 
     - run: ./bin/build version
 
-    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/dashboard/
+    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/question/
       name: Run Cypress tests
       env:
         TERM: xterm
@@ -379,7 +379,7 @@ jobs:
 
     - run: ./bin/build version
 
-    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/dashboard/
+    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/question/
       name: Run Cypress tests
       env:
         TERM: xterm
@@ -420,7 +420,7 @@ jobs:
 
     - run: ./bin/build version
 
-    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/dashboard/
+    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/question/
       name: Run Cypress tests
       env:
         TERM: xterm
@@ -461,7 +461,7 @@ jobs:
 
     - run: ./bin/build version
 
-    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/dashboard/
+    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/question/
       name: Run Cypress tests
       env:
         TERM: xterm
@@ -502,7 +502,7 @@ jobs:
 
     - run: ./bin/build version
 
-    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/dashboard/
+    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/question/
       name: Run Cypress tests
       env:
         TERM: xterm
@@ -543,7 +543,7 @@ jobs:
 
     - run: ./bin/build version
 
-    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/dashboard/
+    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/question/
       name: Run Cypress tests
       env:
         TERM: xterm
@@ -584,7 +584,7 @@ jobs:
 
     - run: ./bin/build version
 
-    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/dashboard/
+    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/question/
       name: Run Cypress tests
       env:
         TERM: xterm
@@ -625,7 +625,7 @@ jobs:
 
     - run: ./bin/build version
 
-    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/dashboard/
+    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/question/
       name: Run Cypress tests
       env:
         TERM: xterm
@@ -666,7 +666,7 @@ jobs:
 
     - run: ./bin/build version
 
-    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/dashboard/
+    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/question/
       name: Run Cypress tests
       env:
         TERM: xterm
@@ -707,7 +707,7 @@ jobs:
 
     - run: ./bin/build version
 
-    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/dashboard/
+    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/question/
       name: Run Cypress tests
       env:
         TERM: xterm
@@ -748,7 +748,7 @@ jobs:
 
     - run: ./bin/build version
 
-    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/dashboard/
+    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/question/
       name: Run Cypress tests
       env:
         TERM: xterm
@@ -789,7 +789,7 @@ jobs:
 
     - run: ./bin/build version
 
-    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/dashboard/
+    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/question/
       name: Run Cypress tests
       env:
         TERM: xterm
@@ -830,7 +830,7 @@ jobs:
 
     - run: ./bin/build version
 
-    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/dashboard/
+    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/question/
       name: Run Cypress tests
       env:
         TERM: xterm
