@@ -1,0 +1,836 @@
+name: Cypress
+
+on: [push, pull_request]
+
+jobs:
+
+  build-uberjar:
+    runs-on: ubuntu-20.04
+    timeout-minutes: 10
+    steps:
+    - name: Download prebuilt uberjar
+      run: curl -o metabase.jar -L https://heuristic-jepsen-a5dc85.netlify.app/metabase-e4efda73.jar
+    - uses: actions/upload-artifact@v2
+      with:
+        name: uberjar
+        path: './metabase.jar'
+
+  test-cypress-metrics-flake-1:
+    runs-on: ubuntu-20.04
+    timeout-minutes: 45
+    needs: build-uberjar
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/download-artifact@v2
+      name: Retrieve uberjar artifact
+      with:
+        name: uberjar
+    - name: Prepare uberjar
+      run: |
+        mkdir -p target/uberjar
+        mv metabase.jar target/uberjar/
+        ls -l target/uberjar/
+    - name: Prepare Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: 14.x
+    - name: Prepare JDK 11
+      uses: actions/setup-java@v1
+      with:
+        java-version: 11
+    - name: Check versions
+      run: |
+        echo "Node.js `node --version`"
+        echo "yarn `yarn --version`"
+        java --version
+    - name: Get yarn cache
+      uses: actions/cache@v2
+      with:
+        path: ~/.cache/yarn
+        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+
+    - run: ./bin/build version
+
+    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/admin/datamodel/
+      name: Run Cypress tests
+      env:
+        TERM: xterm
+
+  test-cypress-metrics-flake-2:
+    runs-on: ubuntu-20.04
+    timeout-minutes: 45
+    needs: build-uberjar
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/download-artifact@v2
+      name: Retrieve uberjar artifact
+      with:
+        name: uberjar
+    - name: Prepare uberjar
+      run: |
+        mkdir -p target/uberjar
+        mv metabase.jar target/uberjar/
+        ls -l target/uberjar/
+    - name: Prepare Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: 14.x
+    - name: Prepare JDK 11
+      uses: actions/setup-java@v1
+      with:
+        java-version: 11
+    - name: Check versions
+      run: |
+        echo "Node.js `node --version`"
+        echo "yarn `yarn --version`"
+        java --version
+    - name: Get yarn cache
+      uses: actions/cache@v2
+      with:
+        path: ~/.cache/yarn
+        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+
+    - run: ./bin/build version
+
+    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/admin/datamodel/
+      name: Run Cypress tests
+      env:
+        TERM: xterm
+
+  test-cypress-metrics-flake-3:
+    runs-on: ubuntu-20.04
+    timeout-minutes: 45
+    needs: build-uberjar
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/download-artifact@v2
+      name: Retrieve uberjar artifact
+      with:
+        name: uberjar
+    - name: Prepare uberjar
+      run: |
+        mkdir -p target/uberjar
+        mv metabase.jar target/uberjar/
+        ls -l target/uberjar/
+    - name: Prepare Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: 14.x
+    - name: Prepare JDK 11
+      uses: actions/setup-java@v1
+      with:
+        java-version: 11
+    - name: Check versions
+      run: |
+        echo "Node.js `node --version`"
+        echo "yarn `yarn --version`"
+        java --version
+    - name: Get yarn cache
+      uses: actions/cache@v2
+      with:
+        path: ~/.cache/yarn
+        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+
+    - run: ./bin/build version
+
+    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/admin/datamodel/
+      name: Run Cypress tests
+      env:
+        TERM: xterm
+
+  test-cypress-metrics-flake-4:
+    runs-on: ubuntu-20.04
+    timeout-minutes: 45
+    needs: build-uberjar
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/download-artifact@v2
+      name: Retrieve uberjar artifact
+      with:
+        name: uberjar
+    - name: Prepare uberjar
+      run: |
+        mkdir -p target/uberjar
+        mv metabase.jar target/uberjar/
+        ls -l target/uberjar/
+    - name: Prepare Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: 14.x
+    - name: Prepare JDK 11
+      uses: actions/setup-java@v1
+      with:
+        java-version: 11
+    - name: Check versions
+      run: |
+        echo "Node.js `node --version`"
+        echo "yarn `yarn --version`"
+        java --version
+    - name: Get yarn cache
+      uses: actions/cache@v2
+      with:
+        path: ~/.cache/yarn
+        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+
+    - run: ./bin/build version
+
+    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/admin/datamodel/
+      name: Run Cypress tests
+      env:
+        TERM: xterm
+
+  test-cypress-metrics-flake-5:
+    runs-on: ubuntu-20.04
+    timeout-minutes: 45
+    needs: build-uberjar
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/download-artifact@v2
+      name: Retrieve uberjar artifact
+      with:
+        name: uberjar
+    - name: Prepare uberjar
+      run: |
+        mkdir -p target/uberjar
+        mv metabase.jar target/uberjar/
+        ls -l target/uberjar/
+    - name: Prepare Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: 14.x
+    - name: Prepare JDK 11
+      uses: actions/setup-java@v1
+      with:
+        java-version: 11
+    - name: Check versions
+      run: |
+        echo "Node.js `node --version`"
+        echo "yarn `yarn --version`"
+        java --version
+    - name: Get yarn cache
+      uses: actions/cache@v2
+      with:
+        path: ~/.cache/yarn
+        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+
+    - run: ./bin/build version
+
+    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/admin/datamodel/
+      name: Run Cypress tests
+      env:
+        TERM: xterm
+
+  test-cypress-metrics-flake-6:
+    runs-on: ubuntu-20.04
+    timeout-minutes: 45
+    needs: build-uberjar
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/download-artifact@v2
+      name: Retrieve uberjar artifact
+      with:
+        name: uberjar
+    - name: Prepare uberjar
+      run: |
+        mkdir -p target/uberjar
+        mv metabase.jar target/uberjar/
+        ls -l target/uberjar/
+    - name: Prepare Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: 14.x
+    - name: Prepare JDK 11
+      uses: actions/setup-java@v1
+      with:
+        java-version: 11
+    - name: Check versions
+      run: |
+        echo "Node.js `node --version`"
+        echo "yarn `yarn --version`"
+        java --version
+    - name: Get yarn cache
+      uses: actions/cache@v2
+      with:
+        path: ~/.cache/yarn
+        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+
+    - run: ./bin/build version
+
+    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/admin/datamodel/
+      name: Run Cypress tests
+      env:
+        TERM: xterm
+
+  test-cypress-metrics-flake-7:
+    runs-on: ubuntu-20.04
+    timeout-minutes: 45
+    needs: build-uberjar
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/download-artifact@v2
+      name: Retrieve uberjar artifact
+      with:
+        name: uberjar
+    - name: Prepare uberjar
+      run: |
+        mkdir -p target/uberjar
+        mv metabase.jar target/uberjar/
+        ls -l target/uberjar/
+    - name: Prepare Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: 14.x
+    - name: Prepare JDK 11
+      uses: actions/setup-java@v1
+      with:
+        java-version: 11
+    - name: Check versions
+      run: |
+        echo "Node.js `node --version`"
+        echo "yarn `yarn --version`"
+        java --version
+    - name: Get yarn cache
+      uses: actions/cache@v2
+      with:
+        path: ~/.cache/yarn
+        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+
+    - run: ./bin/build version
+
+    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/admin/datamodel/
+      name: Run Cypress tests
+      env:
+        TERM: xterm
+
+  test-cypress-metrics-flake-8:
+    runs-on: ubuntu-20.04
+    timeout-minutes: 45
+    needs: build-uberjar
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/download-artifact@v2
+      name: Retrieve uberjar artifact
+      with:
+        name: uberjar
+    - name: Prepare uberjar
+      run: |
+        mkdir -p target/uberjar
+        mv metabase.jar target/uberjar/
+        ls -l target/uberjar/
+    - name: Prepare Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: 14.x
+    - name: Prepare JDK 11
+      uses: actions/setup-java@v1
+      with:
+        java-version: 11
+    - name: Check versions
+      run: |
+        echo "Node.js `node --version`"
+        echo "yarn `yarn --version`"
+        java --version
+    - name: Get yarn cache
+      uses: actions/cache@v2
+      with:
+        path: ~/.cache/yarn
+        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+
+    - run: ./bin/build version
+
+    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/admin/datamodel/
+      name: Run Cypress tests
+      env:
+        TERM: xterm
+
+  test-cypress-metrics-flake-9:
+    runs-on: ubuntu-20.04
+    timeout-minutes: 45
+    needs: build-uberjar
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/download-artifact@v2
+      name: Retrieve uberjar artifact
+      with:
+        name: uberjar
+    - name: Prepare uberjar
+      run: |
+        mkdir -p target/uberjar
+        mv metabase.jar target/uberjar/
+        ls -l target/uberjar/
+    - name: Prepare Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: 14.x
+    - name: Prepare JDK 11
+      uses: actions/setup-java@v1
+      with:
+        java-version: 11
+    - name: Check versions
+      run: |
+        echo "Node.js `node --version`"
+        echo "yarn `yarn --version`"
+        java --version
+    - name: Get yarn cache
+      uses: actions/cache@v2
+      with:
+        path: ~/.cache/yarn
+        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+
+    - run: ./bin/build version
+
+    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/admin/datamodel/
+      name: Run Cypress tests
+      env:
+        TERM: xterm
+
+  test-cypress-metrics-flake-10:
+    runs-on: ubuntu-20.04
+    timeout-minutes: 45
+    needs: build-uberjar
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/download-artifact@v2
+      name: Retrieve uberjar artifact
+      with:
+        name: uberjar
+    - name: Prepare uberjar
+      run: |
+        mkdir -p target/uberjar
+        mv metabase.jar target/uberjar/
+        ls -l target/uberjar/
+    - name: Prepare Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: 14.x
+    - name: Prepare JDK 11
+      uses: actions/setup-java@v1
+      with:
+        java-version: 11
+    - name: Check versions
+      run: |
+        echo "Node.js `node --version`"
+        echo "yarn `yarn --version`"
+        java --version
+    - name: Get yarn cache
+      uses: actions/cache@v2
+      with:
+        path: ~/.cache/yarn
+        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+
+    - run: ./bin/build version
+
+    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/admin/datamodel/
+      name: Run Cypress tests
+      env:
+        TERM: xterm
+
+  test-cypress-metrics-flake-11:
+    runs-on: ubuntu-20.04
+    timeout-minutes: 45
+    needs: build-uberjar
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/download-artifact@v2
+      name: Retrieve uberjar artifact
+      with:
+        name: uberjar
+    - name: Prepare uberjar
+      run: |
+        mkdir -p target/uberjar
+        mv metabase.jar target/uberjar/
+        ls -l target/uberjar/
+    - name: Prepare Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: 14.x
+    - name: Prepare JDK 11
+      uses: actions/setup-java@v1
+      with:
+        java-version: 11
+    - name: Check versions
+      run: |
+        echo "Node.js `node --version`"
+        echo "yarn `yarn --version`"
+        java --version
+    - name: Get yarn cache
+      uses: actions/cache@v2
+      with:
+        path: ~/.cache/yarn
+        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+
+    - run: ./bin/build version
+
+    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/admin/datamodel/
+      name: Run Cypress tests
+      env:
+        TERM: xterm
+
+  test-cypress-metrics-flake-12:
+    runs-on: ubuntu-20.04
+    timeout-minutes: 45
+    needs: build-uberjar
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/download-artifact@v2
+      name: Retrieve uberjar artifact
+      with:
+        name: uberjar
+    - name: Prepare uberjar
+      run: |
+        mkdir -p target/uberjar
+        mv metabase.jar target/uberjar/
+        ls -l target/uberjar/
+    - name: Prepare Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: 14.x
+    - name: Prepare JDK 11
+      uses: actions/setup-java@v1
+      with:
+        java-version: 11
+    - name: Check versions
+      run: |
+        echo "Node.js `node --version`"
+        echo "yarn `yarn --version`"
+        java --version
+    - name: Get yarn cache
+      uses: actions/cache@v2
+      with:
+        path: ~/.cache/yarn
+        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+
+    - run: ./bin/build version
+
+    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/admin/datamodel/
+      name: Run Cypress tests
+      env:
+        TERM: xterm
+
+  test-cypress-metrics-flake-13:
+    runs-on: ubuntu-20.04
+    timeout-minutes: 45
+    needs: build-uberjar
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/download-artifact@v2
+      name: Retrieve uberjar artifact
+      with:
+        name: uberjar
+    - name: Prepare uberjar
+      run: |
+        mkdir -p target/uberjar
+        mv metabase.jar target/uberjar/
+        ls -l target/uberjar/
+    - name: Prepare Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: 14.x
+    - name: Prepare JDK 11
+      uses: actions/setup-java@v1
+      with:
+        java-version: 11
+    - name: Check versions
+      run: |
+        echo "Node.js `node --version`"
+        echo "yarn `yarn --version`"
+        java --version
+    - name: Get yarn cache
+      uses: actions/cache@v2
+      with:
+        path: ~/.cache/yarn
+        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+
+    - run: ./bin/build version
+
+    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/admin/datamodel/
+      name: Run Cypress tests
+      env:
+        TERM: xterm
+
+  test-cypress-metrics-flake-14:
+    runs-on: ubuntu-20.04
+    timeout-minutes: 45
+    needs: build-uberjar
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/download-artifact@v2
+      name: Retrieve uberjar artifact
+      with:
+        name: uberjar
+    - name: Prepare uberjar
+      run: |
+        mkdir -p target/uberjar
+        mv metabase.jar target/uberjar/
+        ls -l target/uberjar/
+    - name: Prepare Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: 14.x
+    - name: Prepare JDK 11
+      uses: actions/setup-java@v1
+      with:
+        java-version: 11
+    - name: Check versions
+      run: |
+        echo "Node.js `node --version`"
+        echo "yarn `yarn --version`"
+        java --version
+    - name: Get yarn cache
+      uses: actions/cache@v2
+      with:
+        path: ~/.cache/yarn
+        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+
+    - run: ./bin/build version
+
+    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/admin/datamodel/
+      name: Run Cypress tests
+      env:
+        TERM: xterm
+
+  test-cypress-metrics-flake-15:
+    runs-on: ubuntu-20.04
+    timeout-minutes: 45
+    needs: build-uberjar
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/download-artifact@v2
+      name: Retrieve uberjar artifact
+      with:
+        name: uberjar
+    - name: Prepare uberjar
+      run: |
+        mkdir -p target/uberjar
+        mv metabase.jar target/uberjar/
+        ls -l target/uberjar/
+    - name: Prepare Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: 14.x
+    - name: Prepare JDK 11
+      uses: actions/setup-java@v1
+      with:
+        java-version: 11
+    - name: Check versions
+      run: |
+        echo "Node.js `node --version`"
+        echo "yarn `yarn --version`"
+        java --version
+    - name: Get yarn cache
+      uses: actions/cache@v2
+      with:
+        path: ~/.cache/yarn
+        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+
+    - run: ./bin/build version
+
+    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/admin/datamodel/
+      name: Run Cypress tests
+      env:
+        TERM: xterm
+
+  test-cypress-metrics-flake-16:
+    runs-on: ubuntu-20.04
+    timeout-minutes: 45
+    needs: build-uberjar
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/download-artifact@v2
+      name: Retrieve uberjar artifact
+      with:
+        name: uberjar
+    - name: Prepare uberjar
+      run: |
+        mkdir -p target/uberjar
+        mv metabase.jar target/uberjar/
+        ls -l target/uberjar/
+    - name: Prepare Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: 14.x
+    - name: Prepare JDK 11
+      uses: actions/setup-java@v1
+      with:
+        java-version: 11
+    - name: Check versions
+      run: |
+        echo "Node.js `node --version`"
+        echo "yarn `yarn --version`"
+        java --version
+    - name: Get yarn cache
+      uses: actions/cache@v2
+      with:
+        path: ~/.cache/yarn
+        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+
+    - run: ./bin/build version
+
+    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/admin/datamodel/
+      name: Run Cypress tests
+      env:
+        TERM: xterm
+
+  test-cypress-metrics-flake-17:
+    runs-on: ubuntu-20.04
+    timeout-minutes: 45
+    needs: build-uberjar
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/download-artifact@v2
+      name: Retrieve uberjar artifact
+      with:
+        name: uberjar
+    - name: Prepare uberjar
+      run: |
+        mkdir -p target/uberjar
+        mv metabase.jar target/uberjar/
+        ls -l target/uberjar/
+    - name: Prepare Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: 14.x
+    - name: Prepare JDK 11
+      uses: actions/setup-java@v1
+      with:
+        java-version: 11
+    - name: Check versions
+      run: |
+        echo "Node.js `node --version`"
+        echo "yarn `yarn --version`"
+        java --version
+    - name: Get yarn cache
+      uses: actions/cache@v2
+      with:
+        path: ~/.cache/yarn
+        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+
+    - run: ./bin/build version
+
+    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/admin/datamodel/
+      name: Run Cypress tests
+      env:
+        TERM: xterm
+
+  test-cypress-metrics-flake-18:
+    runs-on: ubuntu-20.04
+    timeout-minutes: 45
+    needs: build-uberjar
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/download-artifact@v2
+      name: Retrieve uberjar artifact
+      with:
+        name: uberjar
+    - name: Prepare uberjar
+      run: |
+        mkdir -p target/uberjar
+        mv metabase.jar target/uberjar/
+        ls -l target/uberjar/
+    - name: Prepare Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: 14.x
+    - name: Prepare JDK 11
+      uses: actions/setup-java@v1
+      with:
+        java-version: 11
+    - name: Check versions
+      run: |
+        echo "Node.js `node --version`"
+        echo "yarn `yarn --version`"
+        java --version
+    - name: Get yarn cache
+      uses: actions/cache@v2
+      with:
+        path: ~/.cache/yarn
+        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+
+    - run: ./bin/build version
+
+    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/admin/datamodel/
+      name: Run Cypress tests
+      env:
+        TERM: xterm
+
+  test-cypress-metrics-flake-19:
+    runs-on: ubuntu-20.04
+    timeout-minutes: 45
+    needs: build-uberjar
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/download-artifact@v2
+      name: Retrieve uberjar artifact
+      with:
+        name: uberjar
+    - name: Prepare uberjar
+      run: |
+        mkdir -p target/uberjar
+        mv metabase.jar target/uberjar/
+        ls -l target/uberjar/
+    - name: Prepare Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: 14.x
+    - name: Prepare JDK 11
+      uses: actions/setup-java@v1
+      with:
+        java-version: 11
+    - name: Check versions
+      run: |
+        echo "Node.js `node --version`"
+        echo "yarn `yarn --version`"
+        java --version
+    - name: Get yarn cache
+      uses: actions/cache@v2
+      with:
+        path: ~/.cache/yarn
+        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+
+    - run: ./bin/build version
+
+    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/admin/datamodel/
+      name: Run Cypress tests
+      env:
+        TERM: xterm
+
+  test-cypress-metrics-flake-20:
+    runs-on: ubuntu-20.04
+    timeout-minutes: 45
+    needs: build-uberjar
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/download-artifact@v2
+      name: Retrieve uberjar artifact
+      with:
+        name: uberjar
+    - name: Prepare uberjar
+      run: |
+        mkdir -p target/uberjar
+        mv metabase.jar target/uberjar/
+        ls -l target/uberjar/
+    - name: Prepare Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: 14.x
+    - name: Prepare JDK 11
+      uses: actions/setup-java@v1
+      with:
+        java-version: 11
+    - name: Check versions
+      run: |
+        echo "Node.js `node --version`"
+        echo "yarn `yarn --version`"
+        java --version
+    - name: Get yarn cache
+      uses: actions/cache@v2
+      with:
+        path: ~/.cache/yarn
+        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+
+    - run: ./bin/build version
+
+    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/admin/datamodel/
+      name: Run Cypress tests
+      env:
+        TERM: xterm
