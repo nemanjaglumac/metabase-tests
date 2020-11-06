@@ -15,7 +15,7 @@ jobs:
         name: uberjar
         path: './metabase.jar'
 
-  test-cypress-dashboard-flake-1:
+  test-cypress-metrics-flake-1:
     runs-on: ubuntu-20.04
     timeout-minutes: 45
     needs: build-uberjar
@@ -51,12 +51,12 @@ jobs:
 
     - run: ./bin/build version
 
-    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/question/
+    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/admin/datamodel/
       name: Run Cypress tests
       env:
         TERM: xterm
 
-  test-cypress-dashboard-flake-2:
+  test-cypress-metrics-flake-2:
     runs-on: ubuntu-20.04
     timeout-minutes: 45
     needs: build-uberjar
@@ -92,12 +92,12 @@ jobs:
 
     - run: ./bin/build version
 
-    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/question/
+    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/admin/datamodel/
       name: Run Cypress tests
       env:
         TERM: xterm
 
-  test-cypress-dashboard-flake-3:
+  test-cypress-metrics-flake-3:
     runs-on: ubuntu-20.04
     timeout-minutes: 45
     needs: build-uberjar
@@ -133,12 +133,12 @@ jobs:
 
     - run: ./bin/build version
 
-    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/question/
+    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/admin/datamodel/
       name: Run Cypress tests
       env:
         TERM: xterm
 
-  test-cypress-dashboard-flake-4:
+  test-cypress-metrics-flake-4:
     runs-on: ubuntu-20.04
     timeout-minutes: 45
     needs: build-uberjar
@@ -174,12 +174,12 @@ jobs:
 
     - run: ./bin/build version
 
-    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/question/
+    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/admin/datamodel/
       name: Run Cypress tests
       env:
         TERM: xterm
 
-  test-cypress-dashboard-flake-5:
+  test-cypress-metrics-flake-5:
     runs-on: ubuntu-20.04
     timeout-minutes: 45
     needs: build-uberjar
@@ -215,12 +215,12 @@ jobs:
 
     - run: ./bin/build version
 
-    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/question/
+    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/admin/datamodel/
       name: Run Cypress tests
       env:
         TERM: xterm
 
-  test-cypress-dashboard-flake-6:
+  test-cypress-metrics-flake-6:
     runs-on: ubuntu-20.04
     timeout-minutes: 45
     needs: build-uberjar
@@ -256,12 +256,12 @@ jobs:
 
     - run: ./bin/build version
 
-    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/question/
+    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/admin/datamodel/
       name: Run Cypress tests
       env:
         TERM: xterm
 
-  test-cypress-dashboard-flake-7:
+  test-cypress-metrics-flake-7:
     runs-on: ubuntu-20.04
     timeout-minutes: 45
     needs: build-uberjar
@@ -297,12 +297,12 @@ jobs:
 
     - run: ./bin/build version
 
-    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/question/
+    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/admin/datamodel/
       name: Run Cypress tests
       env:
         TERM: xterm
 
-  test-cypress-dashboard-flake-8:
+  test-cypress-metrics-flake-8:
     runs-on: ubuntu-20.04
     timeout-minutes: 45
     needs: build-uberjar
@@ -338,12 +338,12 @@ jobs:
 
     - run: ./bin/build version
 
-    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/question/
+    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/admin/datamodel/
       name: Run Cypress tests
       env:
         TERM: xterm
 
-  test-cypress-dashboard-flake-9:
+  test-cypress-metrics-flake-9:
     runs-on: ubuntu-20.04
     timeout-minutes: 45
     needs: build-uberjar
@@ -379,12 +379,12 @@ jobs:
 
     - run: ./bin/build version
 
-    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/question/
+    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/admin/datamodel/
       name: Run Cypress tests
       env:
         TERM: xterm
 
-  test-cypress-dashboard-flake-10:
+  test-cypress-metrics-flake-10:
     runs-on: ubuntu-20.04
     timeout-minutes: 45
     needs: build-uberjar
@@ -420,12 +420,12 @@ jobs:
 
     - run: ./bin/build version
 
-    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/question/
+    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/admin/datamodel/
       name: Run Cypress tests
       env:
         TERM: xterm
 
-  test-cypress-dashboard-flake-11:
+  test-cypress-metrics-flake-11:
     runs-on: ubuntu-20.04
     timeout-minutes: 45
     needs: build-uberjar
@@ -461,12 +461,12 @@ jobs:
 
     - run: ./bin/build version
 
-    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/question/
+    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/admin/datamodel/
       name: Run Cypress tests
       env:
         TERM: xterm
 
-  test-cypress-dashboard-flake-12:
+  test-cypress-metrics-flake-12:
     runs-on: ubuntu-20.04
     timeout-minutes: 45
     needs: build-uberjar
@@ -502,12 +502,12 @@ jobs:
 
     - run: ./bin/build version
 
-    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/question/
+    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/admin/datamodel/
       name: Run Cypress tests
       env:
         TERM: xterm
 
-  test-cypress-dashboard-flake-13:
+  test-cypress-metrics-flake-13:
     runs-on: ubuntu-20.04
     timeout-minutes: 45
     needs: build-uberjar
@@ -543,12 +543,12 @@ jobs:
 
     - run: ./bin/build version
 
-    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/question/
+    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/admin/datamodel/
       name: Run Cypress tests
       env:
         TERM: xterm
 
-  test-cypress-dashboard-flake-14:
+  test-cypress-metrics-flake-14:
     runs-on: ubuntu-20.04
     timeout-minutes: 45
     needs: build-uberjar
@@ -584,12 +584,12 @@ jobs:
 
     - run: ./bin/build version
 
-    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/question/
+    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/admin/datamodel/
       name: Run Cypress tests
       env:
         TERM: xterm
 
-  test-cypress-dashboard-flake-15:
+  test-cypress-metrics-flake-15:
     runs-on: ubuntu-20.04
     timeout-minutes: 45
     needs: build-uberjar
@@ -625,12 +625,12 @@ jobs:
 
     - run: ./bin/build version
 
-    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/question/
+    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/admin/datamodel/
       name: Run Cypress tests
       env:
         TERM: xterm
 
-  test-cypress-dashboard-flake-16:
+  test-cypress-metrics-flake-16:
     runs-on: ubuntu-20.04
     timeout-minutes: 45
     needs: build-uberjar
@@ -666,12 +666,12 @@ jobs:
 
     - run: ./bin/build version
 
-    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/question/
+    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/admin/datamodel/
       name: Run Cypress tests
       env:
         TERM: xterm
 
-  test-cypress-dashboard-flake-17:
+  test-cypress-metrics-flake-17:
     runs-on: ubuntu-20.04
     timeout-minutes: 45
     needs: build-uberjar
@@ -707,12 +707,12 @@ jobs:
 
     - run: ./bin/build version
 
-    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/question/
+    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/admin/datamodel/
       name: Run Cypress tests
       env:
         TERM: xterm
 
-  test-cypress-dashboard-flake-18:
+  test-cypress-metrics-flake-18:
     runs-on: ubuntu-20.04
     timeout-minutes: 45
     needs: build-uberjar
@@ -748,12 +748,12 @@ jobs:
 
     - run: ./bin/build version
 
-    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/question/
+    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/admin/datamodel/
       name: Run Cypress tests
       env:
         TERM: xterm
 
-  test-cypress-dashboard-flake-19:
+  test-cypress-metrics-flake-19:
     runs-on: ubuntu-20.04
     timeout-minutes: 45
     needs: build-uberjar
@@ -789,12 +789,12 @@ jobs:
 
     - run: ./bin/build version
 
-    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/question/
+    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/admin/datamodel/
       name: Run Cypress tests
       env:
         TERM: xterm
 
-  test-cypress-dashboard-flake-20:
+  test-cypress-metrics-flake-20:
     runs-on: ubuntu-20.04
     timeout-minutes: 45
     needs: build-uberjar
@@ -830,7 +830,7 @@ jobs:
 
     - run: ./bin/build version
 
-    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/question/
+    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/admin/datamodel/
       name: Run Cypress tests
       env:
         TERM: xterm

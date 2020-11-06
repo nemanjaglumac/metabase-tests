@@ -1,7 +1,6 @@
 import { restore, signInAsAdmin, popover, modal } from "__support__/cypress";
 
-// [quarantine] flaky
-describe.skip("scenarios > admin > datamodel > metrics", () => {
+describe("scenarios > admin > datamodel > metrics", () => {
   before(restore);
   beforeEach(() => {
     signInAsAdmin();
@@ -223,6 +222,7 @@ describe.skip("scenarios > admin > datamodel > metrics", () => {
       cy.findByText("Save changes")
         .should("not.be.disabled")
         .click();
+      cy.findByText("New metric")
 
       cy.log("**Refresh the page and assert**");
       cy.reload();
