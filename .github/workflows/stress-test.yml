@@ -54,7 +54,7 @@ jobs:
         name: uberjar
         path: './target/uberjar/metabase.jar'
 
-  stress-test-field-1:
+  stress-test-nested-1:
     runs-on: ubuntu-20.04
     timeout-minutes: 45
     needs: build-uberjar
@@ -90,12 +90,12 @@ jobs:
 
     - run: ./bin/build version
 
-    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/admin/datamodel/
+    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/question/
       name: Run Cypress tests
       env:
         TERM: xterm
 
-  stress-test-field-2:
+  stress-test-nested-2:
     runs-on: ubuntu-20.04
     timeout-minutes: 45
     needs: build-uberjar
@@ -131,12 +131,12 @@ jobs:
 
     - run: ./bin/build version
 
-    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/admin/datamodel/
+    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/question/
       name: Run Cypress tests
       env:
         TERM: xterm
 
-  stress-test-field-3:
+  stress-test-nested-3:
     runs-on: ubuntu-20.04
     timeout-minutes: 45
     needs: build-uberjar
@@ -172,12 +172,12 @@ jobs:
 
     - run: ./bin/build version
 
-    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/admin/datamodel/
+    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/question/
       name: Run Cypress tests
       env:
         TERM: xterm
 
-  stress-test-field-4:
+  stress-test-nested-4:
     runs-on: ubuntu-20.04
     timeout-minutes: 45
     needs: build-uberjar
@@ -213,12 +213,12 @@ jobs:
 
     - run: ./bin/build version
 
-    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/admin/datamodel/
+    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/question/
       name: Run Cypress tests
       env:
         TERM: xterm
 
-  stress-test-field-5:
+  stress-test-nested-5:
     runs-on: ubuntu-20.04
     timeout-minutes: 45
     needs: build-uberjar
@@ -254,12 +254,12 @@ jobs:
 
     - run: ./bin/build version
 
-    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/admin/datamodel/
+    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/question/
       name: Run Cypress tests
       env:
         TERM: xterm
 
-  stress-test-field-6:
+  stress-test-nested-6:
     runs-on: ubuntu-20.04
     timeout-minutes: 45
     needs: build-uberjar
@@ -295,12 +295,12 @@ jobs:
 
     - run: ./bin/build version
 
-    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/admin/datamodel/
+    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/question/
       name: Run Cypress tests
       env:
         TERM: xterm
 
-  stress-test-field-7:
+  stress-test-nested-7:
     runs-on: ubuntu-20.04
     timeout-minutes: 45
     needs: build-uberjar
@@ -336,12 +336,12 @@ jobs:
 
     - run: ./bin/build version
 
-    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/admin/datamodel/
+    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/question/
       name: Run Cypress tests
       env:
         TERM: xterm
 
-  stress-test-field-8:
+  stress-test-nested-8:
     runs-on: ubuntu-20.04
     timeout-minutes: 45
     needs: build-uberjar
@@ -377,12 +377,12 @@ jobs:
 
     - run: ./bin/build version
 
-    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/admin/datamodel/
+    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/question/
       name: Run Cypress tests
       env:
         TERM: xterm
 
-  stress-test-field-9:
+  stress-test-nested-9:
     runs-on: ubuntu-20.04
     timeout-minutes: 45
     needs: build-uberjar
@@ -418,12 +418,12 @@ jobs:
 
     - run: ./bin/build version
 
-    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/admin/datamodel/
+    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/question/
       name: Run Cypress tests
       env:
         TERM: xterm
 
-  stress-test-field-10:
+  stress-test-nested-10:
     runs-on: ubuntu-20.04
     timeout-minutes: 45
     needs: build-uberjar
@@ -459,12 +459,12 @@ jobs:
 
     - run: ./bin/build version
 
-    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/admin/datamodel/
+    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/question/
       name: Run Cypress tests
       env:
         TERM: xterm
 
-  stress-test-field-11:
+  stress-test-nested-11:
     runs-on: ubuntu-20.04
     timeout-minutes: 45
     needs: build-uberjar
@@ -500,12 +500,12 @@ jobs:
 
     - run: ./bin/build version
 
-    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/admin/datamodel/
+    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/question/
       name: Run Cypress tests
       env:
         TERM: xterm
 
-  stress-test-field-12:
+  stress-test-nested-12:
     runs-on: ubuntu-20.04
     timeout-minutes: 45
     needs: build-uberjar
@@ -541,12 +541,12 @@ jobs:
 
     - run: ./bin/build version
 
-    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/admin/datamodel/
+    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/question/
       name: Run Cypress tests
       env:
         TERM: xterm
 
-  stress-test-field-13:
+  stress-test-nested-13:
     runs-on: ubuntu-20.04
     timeout-minutes: 45
     needs: build-uberjar
@@ -582,12 +582,12 @@ jobs:
 
     - run: ./bin/build version
 
-    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/admin/datamodel/
+    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/question/
       name: Run Cypress tests
       env:
         TERM: xterm
 
-  stress-test-field-14:
+  stress-test-nested-14:
     runs-on: ubuntu-20.04
     timeout-minutes: 45
     needs: build-uberjar
@@ -623,12 +623,12 @@ jobs:
 
     - run: ./bin/build version
 
-    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/admin/datamodel/
+    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/question/
       name: Run Cypress tests
       env:
         TERM: xterm
 
-  stress-test-field-15:
+  stress-test-nested-15:
     runs-on: ubuntu-20.04
     timeout-minutes: 45
     needs: build-uberjar
@@ -664,12 +664,12 @@ jobs:
 
     - run: ./bin/build version
 
-    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/admin/datamodel/
+    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/question/
       name: Run Cypress tests
       env:
         TERM: xterm
 
-  stress-test-field-16:
+  stress-test-nested-16:
     runs-on: ubuntu-20.04
     timeout-minutes: 45
     needs: build-uberjar
@@ -705,12 +705,12 @@ jobs:
 
     - run: ./bin/build version
 
-    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/admin/datamodel/
+    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/question/
       name: Run Cypress tests
       env:
         TERM: xterm
 
-  stress-test-field-17:
+  stress-test-nested-17:
     runs-on: ubuntu-20.04
     timeout-minutes: 45
     needs: build-uberjar
@@ -746,12 +746,12 @@ jobs:
 
     - run: ./bin/build version
 
-    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/admin/datamodel/
+    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/question/
       name: Run Cypress tests
       env:
         TERM: xterm
 
-  stress-test-field-18:
+  stress-test-nested-18:
     runs-on: ubuntu-20.04
     timeout-minutes: 45
     needs: build-uberjar
@@ -787,12 +787,12 @@ jobs:
 
     - run: ./bin/build version
 
-    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/admin/datamodel/
+    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/question/
       name: Run Cypress tests
       env:
         TERM: xterm
 
-  stress-test-field-19:
+  stress-test-nested-19:
     runs-on: ubuntu-20.04
     timeout-minutes: 45
     needs: build-uberjar
@@ -828,12 +828,12 @@ jobs:
 
     - run: ./bin/build version
 
-    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/admin/datamodel/
+    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/question/
       name: Run Cypress tests
       env:
         TERM: xterm
 
-  stress-test-field-20:
+  stress-test-nested-20:
     runs-on: ubuntu-20.04
     timeout-minutes: 45
     needs: build-uberjar
@@ -869,7 +869,7 @@ jobs:
 
     - run: ./bin/build version
 
-    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/admin/datamodel/
+    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/question/
       name: Run Cypress tests
       env:
         TERM: xterm
