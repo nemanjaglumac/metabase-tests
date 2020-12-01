@@ -6,9 +6,30 @@ jobs:
 
   build-uberjar:
     runs-on: ubuntu-20.04
+    timeout-minutes: 10
+    steps:
+    - name: Download prebuilt uberjar
+      run: curl -o metabase.jar -L https://heuristic-jepsen-a5dc85.netlify.app/metabase-5658fc06.jar
+    - uses: actions/upload-artifact@v2
+      with:
+        name: uberjar
+        path: './metabase.jar'
+
+  stress-test-cypress-notebook-1:
+    runs-on: ubuntu-20.04
     timeout-minutes: 45
+    needs: build-uberjar
     steps:
     - uses: actions/checkout@v2
+    - uses: actions/download-artifact@v2
+      name: Retrieve uberjar artifact
+      with:
+        name: uberjar
+    - name: Prepare uberjar
+      run: |
+        mkdir -p target/uberjar
+        mv metabase.jar target/uberjar/
+        ls -l target/uberjar/
     - name: Prepare Node.js
       uses: actions/setup-node@v1
       with:
@@ -19,69 +40,14 @@ jobs:
         java-version: 11
     - name: Install Clojure CLI
       run: |
-        curl -O https://download.clojure.org/install/linux-install-1.10.1.708.sh &&
-        sudo bash ./linux-install-1.10.1.708.sh
+        curl -O https://download.clojure.org/install/linux-install-1.10.1.727.sh
+        chmod +x linux-install-1.10.1.727.sh
+        sudo ./linux-install-1.10.1.727.sh
     - name: Check versions
       run: |
         echo "Node.js `node --version`"
         echo "yarn `yarn --version`"
-        java --version
-        echo "Clojure `clojure -e "(println (clojure-version))"`"
-        lein --version
-    - name: Get yarn cache
-      uses: actions/cache@v2
-      with:
-        path: ~/.cache/yarn
-        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-    - run: yarn install --lockfile
-    - name: Get M2 cache
-      uses: actions/cache@v2
-      with:
-        path: ~/.m2
-        key: ${{ runner.os }}-m2-${{ hashFiles('**/project.clj') }}
-    - run: lein with-profile +include-all-drivers,+cloverage,+junit,+oss deps
-
-    - name: Install gettext
-      run: sudo apt install gettext
-    - run: ./bin/build version
-    - run: ./bin/build translations
-    - run: ./bin/build frontend
-    - run: ./bin/build drivers
-    - run: ./bin/build uberjar
-
-    - uses: actions/upload-artifact@v2
-      with:
-        name: uberjar
-        path: './target/uberjar/metabase.jar'
-
-  stress-test-editor-1:
-    runs-on: ubuntu-20.04
-    timeout-minutes: 45
-    needs: build-uberjar
-    steps:
-    - uses: actions/checkout@v2
-    - uses: actions/download-artifact@v2
-      name: Retrieve uberjar artifact
-      with:
-        name: uberjar
-    - name: Prepare uberjar
-      run: |
-        mkdir -p target/uberjar
-        mv metabase.jar target/uberjar/
-        ls -l target/uberjar/
-    - name: Prepare Node.js
-      uses: actions/setup-node@v1
-      with:
-        node-version: 14.x
-    - name: Prepare JDK 11
-      uses: actions/setup-java@v1
-      with:
-        java-version: 11
-    - name: Check versions
-      run: |
-        echo "Node.js `node --version`"
-        echo "yarn `yarn --version`"
-        java --version
+        java -version
     - name: Get yarn cache
       uses: actions/cache@v2
       with:
@@ -90,12 +56,12 @@ jobs:
 
     - run: ./bin/build version
 
-    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/admin/datamodel/
+    - run: yarn test-cypress-no-build --testFiles frontend/test/metabase/scenarios/question/
       name: Run Cypress tests
       env:
         TERM: xterm
 
-  stress-test-editor-2:
+  stress-test-cypress-notebook-2:
     runs-on: ubuntu-20.04
     timeout-minutes: 45
     needs: build-uberjar
@@ -118,11 +84,16 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 11
+    - name: Install Clojure CLI
+      run: |
+        curl -O https://download.clojure.org/install/linux-install-1.10.1.727.sh
+        chmod +x linux-install-1.10.1.727.sh
+        sudo ./linux-install-1.10.1.727.sh
     - name: Check versions
       run: |
         echo "Node.js `node --version`"
         echo "yarn `yarn --version`"
-        java --version
+        java -version
     - name: Get yarn cache
       uses: actions/cache@v2
       with:
@@ -131,12 +102,12 @@ jobs:
 
     - run: ./bin/build version
 
-    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/admin/datamodel/
+    - run: yarn test-cypress-no-build --testFiles frontend/test/metabase/scenarios/admin/datamodel/
       name: Run Cypress tests
       env:
         TERM: xterm
 
-  stress-test-editor-3:
+  stress-test-cypress-notebook-3:
     runs-on: ubuntu-20.04
     timeout-minutes: 45
     needs: build-uberjar
@@ -159,11 +130,16 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 11
+    - name: Install Clojure CLI
+      run: |
+        curl -O https://download.clojure.org/install/linux-install-1.10.1.727.sh
+        chmod +x linux-install-1.10.1.727.sh
+        sudo ./linux-install-1.10.1.727.sh
     - name: Check versions
       run: |
         echo "Node.js `node --version`"
         echo "yarn `yarn --version`"
-        java --version
+        java -version
     - name: Get yarn cache
       uses: actions/cache@v2
       with:
@@ -172,12 +148,12 @@ jobs:
 
     - run: ./bin/build version
 
-    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/admin/datamodel/
+    - run: yarn test-cypress-no-build --testFiles frontend/test/metabase/scenarios/admin/datamodel/
       name: Run Cypress tests
       env:
         TERM: xterm
 
-  stress-test-editor-4:
+  stress-test-cypress-notebook-4:
     runs-on: ubuntu-20.04
     timeout-minutes: 45
     needs: build-uberjar
@@ -200,11 +176,16 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 11
+    - name: Install Clojure CLI
+      run: |
+        curl -O https://download.clojure.org/install/linux-install-1.10.1.727.sh
+        chmod +x linux-install-1.10.1.727.sh
+        sudo ./linux-install-1.10.1.727.sh
     - name: Check versions
       run: |
         echo "Node.js `node --version`"
         echo "yarn `yarn --version`"
-        java --version
+        java -version
     - name: Get yarn cache
       uses: actions/cache@v2
       with:
@@ -213,12 +194,12 @@ jobs:
 
     - run: ./bin/build version
 
-    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/admin/datamodel/
+    - run: yarn test-cypress-no-build --testFiles frontend/test/metabase/scenarios/admin/datamodel/
       name: Run Cypress tests
       env:
         TERM: xterm
 
-  stress-test-editor-5:
+  stress-test-cypress-notebook-5:
     runs-on: ubuntu-20.04
     timeout-minutes: 45
     needs: build-uberjar
@@ -241,11 +222,16 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 11
+    - name: Install Clojure CLI
+      run: |
+        curl -O https://download.clojure.org/install/linux-install-1.10.1.727.sh
+        chmod +x linux-install-1.10.1.727.sh
+        sudo ./linux-install-1.10.1.727.sh
     - name: Check versions
       run: |
         echo "Node.js `node --version`"
         echo "yarn `yarn --version`"
-        java --version
+        java -version
     - name: Get yarn cache
       uses: actions/cache@v2
       with:
@@ -254,12 +240,12 @@ jobs:
 
     - run: ./bin/build version
 
-    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/admin/datamodel/
+    - run: yarn test-cypress-no-build --testFiles frontend/test/metabase/scenarios/admin/datamodel/
       name: Run Cypress tests
       env:
         TERM: xterm
 
-  stress-test-editor-6:
+  stress-test-cypress-notebook-6:
     runs-on: ubuntu-20.04
     timeout-minutes: 45
     needs: build-uberjar
@@ -282,11 +268,16 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 11
+    - name: Install Clojure CLI
+      run: |
+        curl -O https://download.clojure.org/install/linux-install-1.10.1.727.sh
+        chmod +x linux-install-1.10.1.727.sh
+        sudo ./linux-install-1.10.1.727.sh
     - name: Check versions
       run: |
         echo "Node.js `node --version`"
         echo "yarn `yarn --version`"
-        java --version
+        java -version
     - name: Get yarn cache
       uses: actions/cache@v2
       with:
@@ -295,12 +286,12 @@ jobs:
 
     - run: ./bin/build version
 
-    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/admin/datamodel/
+    - run: yarn test-cypress-no-build --testFiles frontend/test/metabase/scenarios/admin/datamodel/
       name: Run Cypress tests
       env:
         TERM: xterm
 
-  stress-test-editor-7:
+  stress-test-cypress-notebook-7:
     runs-on: ubuntu-20.04
     timeout-minutes: 45
     needs: build-uberjar
@@ -323,11 +314,16 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 11
+    - name: Install Clojure CLI
+      run: |
+        curl -O https://download.clojure.org/install/linux-install-1.10.1.727.sh
+        chmod +x linux-install-1.10.1.727.sh
+        sudo ./linux-install-1.10.1.727.sh
     - name: Check versions
       run: |
         echo "Node.js `node --version`"
         echo "yarn `yarn --version`"
-        java --version
+        java -version
     - name: Get yarn cache
       uses: actions/cache@v2
       with:
@@ -336,12 +332,12 @@ jobs:
 
     - run: ./bin/build version
 
-    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/admin/datamodel/
+    - run: yarn test-cypress-no-build --testFiles frontend/test/metabase/scenarios/admin/datamodel/
       name: Run Cypress tests
       env:
         TERM: xterm
 
-  stress-test-editor-8:
+  stress-test-cypress-notebook-8:
     runs-on: ubuntu-20.04
     timeout-minutes: 45
     needs: build-uberjar
@@ -364,11 +360,16 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 11
+    - name: Install Clojure CLI
+      run: |
+        curl -O https://download.clojure.org/install/linux-install-1.10.1.727.sh
+        chmod +x linux-install-1.10.1.727.sh
+        sudo ./linux-install-1.10.1.727.sh
     - name: Check versions
       run: |
         echo "Node.js `node --version`"
         echo "yarn `yarn --version`"
-        java --version
+        java -version
     - name: Get yarn cache
       uses: actions/cache@v2
       with:
@@ -377,12 +378,12 @@ jobs:
 
     - run: ./bin/build version
 
-    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/admin/datamodel/
+    - run: yarn test-cypress-no-build --testFiles frontend/test/metabase/scenarios/admin/datamodel/
       name: Run Cypress tests
       env:
         TERM: xterm
 
-  stress-test-editor-9:
+  stress-test-cypress-notebook-9:
     runs-on: ubuntu-20.04
     timeout-minutes: 45
     needs: build-uberjar
@@ -405,11 +406,16 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 11
+    - name: Install Clojure CLI
+      run: |
+        curl -O https://download.clojure.org/install/linux-install-1.10.1.727.sh
+        chmod +x linux-install-1.10.1.727.sh
+        sudo ./linux-install-1.10.1.727.sh
     - name: Check versions
       run: |
         echo "Node.js `node --version`"
         echo "yarn `yarn --version`"
-        java --version
+        java -version
     - name: Get yarn cache
       uses: actions/cache@v2
       with:
@@ -418,12 +424,12 @@ jobs:
 
     - run: ./bin/build version
 
-    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/admin/datamodel/
+    - run: yarn test-cypress-no-build --testFiles frontend/test/metabase/scenarios/admin/datamodel/
       name: Run Cypress tests
       env:
         TERM: xterm
 
-  stress-test-editor-10:
+  stress-test-cypress-notebook-10:
     runs-on: ubuntu-20.04
     timeout-minutes: 45
     needs: build-uberjar
@@ -446,11 +452,16 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 11
+    - name: Install Clojure CLI
+      run: |
+        curl -O https://download.clojure.org/install/linux-install-1.10.1.727.sh
+        chmod +x linux-install-1.10.1.727.sh
+        sudo ./linux-install-1.10.1.727.sh
     - name: Check versions
       run: |
         echo "Node.js `node --version`"
         echo "yarn `yarn --version`"
-        java --version
+        java -version
     - name: Get yarn cache
       uses: actions/cache@v2
       with:
@@ -459,12 +470,12 @@ jobs:
 
     - run: ./bin/build version
 
-    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/admin/datamodel/
+    - run: yarn test-cypress-no-build --testFiles frontend/test/metabase/scenarios/admin/datamodel/
       name: Run Cypress tests
       env:
         TERM: xterm
 
-  stress-test-editor-11:
+  stress-test-cypress-notebook-11:
     runs-on: ubuntu-20.04
     timeout-minutes: 45
     needs: build-uberjar
@@ -487,11 +498,16 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 11
+    - name: Install Clojure CLI
+      run: |
+        curl -O https://download.clojure.org/install/linux-install-1.10.1.727.sh
+        chmod +x linux-install-1.10.1.727.sh
+        sudo ./linux-install-1.10.1.727.sh
     - name: Check versions
       run: |
         echo "Node.js `node --version`"
         echo "yarn `yarn --version`"
-        java --version
+        java -version
     - name: Get yarn cache
       uses: actions/cache@v2
       with:
@@ -500,12 +516,12 @@ jobs:
 
     - run: ./bin/build version
 
-    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/admin/datamodel/
+    - run: yarn test-cypress-no-build --testFiles frontend/test/metabase/scenarios/admin/datamodel/
       name: Run Cypress tests
       env:
         TERM: xterm
 
-  stress-test-editor-12:
+  stress-test-cypress-notebook-12:
     runs-on: ubuntu-20.04
     timeout-minutes: 45
     needs: build-uberjar
@@ -528,11 +544,16 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 11
+    - name: Install Clojure CLI
+      run: |
+        curl -O https://download.clojure.org/install/linux-install-1.10.1.727.sh
+        chmod +x linux-install-1.10.1.727.sh
+        sudo ./linux-install-1.10.1.727.sh
     - name: Check versions
       run: |
         echo "Node.js `node --version`"
         echo "yarn `yarn --version`"
-        java --version
+        java -version
     - name: Get yarn cache
       uses: actions/cache@v2
       with:
@@ -541,12 +562,12 @@ jobs:
 
     - run: ./bin/build version
 
-    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/admin/datamodel/
+    - run: yarn test-cypress-no-build --testFiles frontend/test/metabase/scenarios/admin/datamodel/
       name: Run Cypress tests
       env:
         TERM: xterm
 
-  stress-test-editor-13:
+  stress-test-cypress-notebook-13:
     runs-on: ubuntu-20.04
     timeout-minutes: 45
     needs: build-uberjar
@@ -569,11 +590,16 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 11
+    - name: Install Clojure CLI
+      run: |
+        curl -O https://download.clojure.org/install/linux-install-1.10.1.727.sh
+        chmod +x linux-install-1.10.1.727.sh
+        sudo ./linux-install-1.10.1.727.sh
     - name: Check versions
       run: |
         echo "Node.js `node --version`"
         echo "yarn `yarn --version`"
-        java --version
+        java -version
     - name: Get yarn cache
       uses: actions/cache@v2
       with:
@@ -582,12 +608,12 @@ jobs:
 
     - run: ./bin/build version
 
-    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/admin/datamodel/
+    - run: yarn test-cypress-no-build --testFiles frontend/test/metabase/scenarios/admin/datamodel/
       name: Run Cypress tests
       env:
         TERM: xterm
 
-  stress-test-editor-14:
+  stress-test-cypress-notebook-14:
     runs-on: ubuntu-20.04
     timeout-minutes: 45
     needs: build-uberjar
@@ -610,11 +636,16 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 11
+    - name: Install Clojure CLI
+      run: |
+        curl -O https://download.clojure.org/install/linux-install-1.10.1.727.sh
+        chmod +x linux-install-1.10.1.727.sh
+        sudo ./linux-install-1.10.1.727.sh
     - name: Check versions
       run: |
         echo "Node.js `node --version`"
         echo "yarn `yarn --version`"
-        java --version
+        java -version
     - name: Get yarn cache
       uses: actions/cache@v2
       with:
@@ -623,12 +654,12 @@ jobs:
 
     - run: ./bin/build version
 
-    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/admin/datamodel/
+    - run: yarn test-cypress-no-build --testFiles frontend/test/metabase/scenarios/admin/datamodel/
       name: Run Cypress tests
       env:
         TERM: xterm
 
-  stress-test-editor-15:
+  stress-test-cypress-notebook-15:
     runs-on: ubuntu-20.04
     timeout-minutes: 45
     needs: build-uberjar
@@ -651,11 +682,16 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 11
+    - name: Install Clojure CLI
+      run: |
+        curl -O https://download.clojure.org/install/linux-install-1.10.1.727.sh
+        chmod +x linux-install-1.10.1.727.sh
+        sudo ./linux-install-1.10.1.727.sh
     - name: Check versions
       run: |
         echo "Node.js `node --version`"
         echo "yarn `yarn --version`"
-        java --version
+        java -version
     - name: Get yarn cache
       uses: actions/cache@v2
       with:
@@ -664,12 +700,12 @@ jobs:
 
     - run: ./bin/build version
 
-    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/admin/datamodel/
+    - run: yarn test-cypress-no-build --testFiles frontend/test/metabase/scenarios/admin/datamodel/
       name: Run Cypress tests
       env:
         TERM: xterm
 
-  stress-test-editor-16:
+  stress-test-cypress-notebook-16:
     runs-on: ubuntu-20.04
     timeout-minutes: 45
     needs: build-uberjar
@@ -692,11 +728,16 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 11
+    - name: Install Clojure CLI
+      run: |
+        curl -O https://download.clojure.org/install/linux-install-1.10.1.727.sh
+        chmod +x linux-install-1.10.1.727.sh
+        sudo ./linux-install-1.10.1.727.sh
     - name: Check versions
       run: |
         echo "Node.js `node --version`"
         echo "yarn `yarn --version`"
-        java --version
+        java -version
     - name: Get yarn cache
       uses: actions/cache@v2
       with:
@@ -705,12 +746,12 @@ jobs:
 
     - run: ./bin/build version
 
-    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/admin/datamodel/
+    - run: yarn test-cypress-no-build --testFiles frontend/test/metabase/scenarios/admin/datamodel/
       name: Run Cypress tests
       env:
         TERM: xterm
 
-  stress-test-editor-17:
+  stress-test-cypress-notebook-17:
     runs-on: ubuntu-20.04
     timeout-minutes: 45
     needs: build-uberjar
@@ -733,11 +774,16 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 11
+    - name: Install Clojure CLI
+      run: |
+        curl -O https://download.clojure.org/install/linux-install-1.10.1.727.sh
+        chmod +x linux-install-1.10.1.727.sh
+        sudo ./linux-install-1.10.1.727.sh
     - name: Check versions
       run: |
         echo "Node.js `node --version`"
         echo "yarn `yarn --version`"
-        java --version
+        java -version
     - name: Get yarn cache
       uses: actions/cache@v2
       with:
@@ -746,12 +792,12 @@ jobs:
 
     - run: ./bin/build version
 
-    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/admin/datamodel/
+    - run: yarn test-cypress-no-build --testFiles frontend/test/metabase/scenarios/admin/datamodel/
       name: Run Cypress tests
       env:
         TERM: xterm
 
-  stress-test-editor-18:
+  stress-test-cypress-notebook-18:
     runs-on: ubuntu-20.04
     timeout-minutes: 45
     needs: build-uberjar
@@ -774,11 +820,16 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 11
+    - name: Install Clojure CLI
+      run: |
+        curl -O https://download.clojure.org/install/linux-install-1.10.1.727.sh
+        chmod +x linux-install-1.10.1.727.sh
+        sudo ./linux-install-1.10.1.727.sh
     - name: Check versions
       run: |
         echo "Node.js `node --version`"
         echo "yarn `yarn --version`"
-        java --version
+        java -version
     - name: Get yarn cache
       uses: actions/cache@v2
       with:
@@ -787,12 +838,12 @@ jobs:
 
     - run: ./bin/build version
 
-    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/admin/datamodel/
+    - run: yarn test-cypress-no-build --testFiles frontend/test/metabase/scenarios/admin/datamodel/
       name: Run Cypress tests
       env:
         TERM: xterm
 
-  stress-test-editor-19:
+  stress-test-cypress-notebook-19:
     runs-on: ubuntu-20.04
     timeout-minutes: 45
     needs: build-uberjar
@@ -815,11 +866,16 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 11
+    - name: Install Clojure CLI
+      run: |
+        curl -O https://download.clojure.org/install/linux-install-1.10.1.727.sh
+        chmod +x linux-install-1.10.1.727.sh
+        sudo ./linux-install-1.10.1.727.sh
     - name: Check versions
       run: |
         echo "Node.js `node --version`"
         echo "yarn `yarn --version`"
-        java --version
+        java -version
     - name: Get yarn cache
       uses: actions/cache@v2
       with:
@@ -828,12 +884,12 @@ jobs:
 
     - run: ./bin/build version
 
-    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/admin/datamodel/
+    - run: yarn test-cypress-no-build --testFiles frontend/test/metabase/scenarios/admin/datamodel/
       name: Run Cypress tests
       env:
         TERM: xterm
 
-  stress-test-editor-20:
+  stress-test-cypress-notebook-20:
     runs-on: ubuntu-20.04
     timeout-minutes: 45
     needs: build-uberjar
@@ -856,11 +912,16 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 11
+    - name: Install Clojure CLI
+      run: |
+        curl -O https://download.clojure.org/install/linux-install-1.10.1.727.sh
+        chmod +x linux-install-1.10.1.727.sh
+        sudo ./linux-install-1.10.1.727.sh
     - name: Check versions
       run: |
         echo "Node.js `node --version`"
         echo "yarn `yarn --version`"
-        java --version
+        java -version
     - name: Get yarn cache
       uses: actions/cache@v2
       with:
@@ -869,7 +930,7 @@ jobs:
 
     - run: ./bin/build version
 
-    - run: yarn run test-cypress-no-build --testFiles frontend/test/metabase/scenarios/admin/datamodel/
+    - run: yarn test-cypress-no-build --testFiles frontend/test/metabase/scenarios/admin/datamodel/
       name: Run Cypress tests
       env:
         TERM: xterm
