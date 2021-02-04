@@ -1,0 +1,936 @@
+name: Cypress Stress Testing
+
+on: [push, pull_request]
+
+jobs:
+
+  build-uberjar:
+    runs-on: ubuntu-20.04
+    timeout-minutes: 10
+    steps:
+    - name: Download prebuilt uberjar
+      run: curl -o metabase.jar -L https://downloads.metabase.com/v0.37.8/metabase.jar
+    - uses: actions/upload-artifact@v2
+      with:
+        name: uberjar
+        path: './metabase.jar'
+
+  stress-test-ee520-1:
+    runs-on: ubuntu-20.04
+    timeout-minutes: 45
+    needs: build-uberjar
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/download-artifact@v2
+      name: Retrieve uberjar artifact
+      with:
+        name: uberjar
+    - name: Prepare uberjar
+      run: |
+        mkdir -p target/uberjar
+        mv metabase.jar target/uberjar/
+        ls -l target/uberjar/
+    - name: Prepare Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: 14.x
+    - name: Prepare JDK 11
+      uses: actions/setup-java@v1
+      with:
+        java-version: 11
+    - name: Install Clojure CLI
+      run: |
+        curl -O https://download.clojure.org/install/linux-install-1.10.1.727.sh
+        chmod +x linux-install-1.10.1.727.sh
+        sudo ./linux-install-1.10.1.727.sh
+    - name: Check versions
+      run: |
+        echo "Node.js `node --version`"
+        echo "yarn `yarn --version`"
+        java -version
+    - name: Get yarn cache
+      uses: actions/cache@v2
+      with:
+        path: ~/.cache/yarn
+        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+
+    - run: ./bin/build version
+
+    - run: yarn test-cypress-no-build --testFiles enterprise/frontend/test/metabase-enterprise/sandboxes/
+      name: Run Cypress tests
+      env:
+        TERM: xterm
+
+  stress-test-ee520-2:
+    runs-on: ubuntu-20.04
+    timeout-minutes: 45
+    needs: build-uberjar
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/download-artifact@v2
+      name: Retrieve uberjar artifact
+      with:
+        name: uberjar
+    - name: Prepare uberjar
+      run: |
+        mkdir -p target/uberjar
+        mv metabase.jar target/uberjar/
+        ls -l target/uberjar/
+    - name: Prepare Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: 14.x
+    - name: Prepare JDK 11
+      uses: actions/setup-java@v1
+      with:
+        java-version: 11
+    - name: Install Clojure CLI
+      run: |
+        curl -O https://download.clojure.org/install/linux-install-1.10.1.727.sh
+        chmod +x linux-install-1.10.1.727.sh
+        sudo ./linux-install-1.10.1.727.sh
+    - name: Check versions
+      run: |
+        echo "Node.js `node --version`"
+        echo "yarn `yarn --version`"
+        java -version
+    - name: Get yarn cache
+      uses: actions/cache@v2
+      with:
+        path: ~/.cache/yarn
+        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+
+    - run: ./bin/build version
+
+    - run: yarn test-cypress-no-build --testFiles enterprise/frontend/test/metabase-enterprise/sandboxes/
+      name: Run Cypress tests
+      env:
+        TERM: xterm
+
+  stress-test-ee520-3:
+    runs-on: ubuntu-20.04
+    timeout-minutes: 45
+    needs: build-uberjar
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/download-artifact@v2
+      name: Retrieve uberjar artifact
+      with:
+        name: uberjar
+    - name: Prepare uberjar
+      run: |
+        mkdir -p target/uberjar
+        mv metabase.jar target/uberjar/
+        ls -l target/uberjar/
+    - name: Prepare Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: 14.x
+    - name: Prepare JDK 11
+      uses: actions/setup-java@v1
+      with:
+        java-version: 11
+    - name: Install Clojure CLI
+      run: |
+        curl -O https://download.clojure.org/install/linux-install-1.10.1.727.sh
+        chmod +x linux-install-1.10.1.727.sh
+        sudo ./linux-install-1.10.1.727.sh
+    - name: Check versions
+      run: |
+        echo "Node.js `node --version`"
+        echo "yarn `yarn --version`"
+        java -version
+    - name: Get yarn cache
+      uses: actions/cache@v2
+      with:
+        path: ~/.cache/yarn
+        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+
+    - run: ./bin/build version
+
+    - run: yarn test-cypress-no-build --testFiles enterprise/frontend/test/metabase-enterprise/sandboxes/
+      name: Run Cypress tests
+      env:
+        TERM: xterm
+
+  stress-test-ee520-4:
+    runs-on: ubuntu-20.04
+    timeout-minutes: 45
+    needs: build-uberjar
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/download-artifact@v2
+      name: Retrieve uberjar artifact
+      with:
+        name: uberjar
+    - name: Prepare uberjar
+      run: |
+        mkdir -p target/uberjar
+        mv metabase.jar target/uberjar/
+        ls -l target/uberjar/
+    - name: Prepare Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: 14.x
+    - name: Prepare JDK 11
+      uses: actions/setup-java@v1
+      with:
+        java-version: 11
+    - name: Install Clojure CLI
+      run: |
+        curl -O https://download.clojure.org/install/linux-install-1.10.1.727.sh
+        chmod +x linux-install-1.10.1.727.sh
+        sudo ./linux-install-1.10.1.727.sh
+    - name: Check versions
+      run: |
+        echo "Node.js `node --version`"
+        echo "yarn `yarn --version`"
+        java -version
+    - name: Get yarn cache
+      uses: actions/cache@v2
+      with:
+        path: ~/.cache/yarn
+        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+
+    - run: ./bin/build version
+
+    - run: yarn test-cypress-no-build --testFiles enterprise/frontend/test/metabase-enterprise/sandboxes/
+      name: Run Cypress tests
+      env:
+        TERM: xterm
+
+  stress-test-ee520-5:
+    runs-on: ubuntu-20.04
+    timeout-minutes: 45
+    needs: build-uberjar
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/download-artifact@v2
+      name: Retrieve uberjar artifact
+      with:
+        name: uberjar
+    - name: Prepare uberjar
+      run: |
+        mkdir -p target/uberjar
+        mv metabase.jar target/uberjar/
+        ls -l target/uberjar/
+    - name: Prepare Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: 14.x
+    - name: Prepare JDK 11
+      uses: actions/setup-java@v1
+      with:
+        java-version: 11
+    - name: Install Clojure CLI
+      run: |
+        curl -O https://download.clojure.org/install/linux-install-1.10.1.727.sh
+        chmod +x linux-install-1.10.1.727.sh
+        sudo ./linux-install-1.10.1.727.sh
+    - name: Check versions
+      run: |
+        echo "Node.js `node --version`"
+        echo "yarn `yarn --version`"
+        java -version
+    - name: Get yarn cache
+      uses: actions/cache@v2
+      with:
+        path: ~/.cache/yarn
+        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+
+    - run: ./bin/build version
+
+    - run: yarn test-cypress-no-build --testFiles enterprise/frontend/test/metabase-enterprise/sandboxes/
+      name: Run Cypress tests
+      env:
+        TERM: xterm
+
+  stress-test-ee520-6:
+    runs-on: ubuntu-20.04
+    timeout-minutes: 45
+    needs: build-uberjar
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/download-artifact@v2
+      name: Retrieve uberjar artifact
+      with:
+        name: uberjar
+    - name: Prepare uberjar
+      run: |
+        mkdir -p target/uberjar
+        mv metabase.jar target/uberjar/
+        ls -l target/uberjar/
+    - name: Prepare Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: 14.x
+    - name: Prepare JDK 11
+      uses: actions/setup-java@v1
+      with:
+        java-version: 11
+    - name: Install Clojure CLI
+      run: |
+        curl -O https://download.clojure.org/install/linux-install-1.10.1.727.sh
+        chmod +x linux-install-1.10.1.727.sh
+        sudo ./linux-install-1.10.1.727.sh
+    - name: Check versions
+      run: |
+        echo "Node.js `node --version`"
+        echo "yarn `yarn --version`"
+        java -version
+    - name: Get yarn cache
+      uses: actions/cache@v2
+      with:
+        path: ~/.cache/yarn
+        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+
+    - run: ./bin/build version
+
+    - run: yarn test-cypress-no-build --testFiles enterprise/frontend/test/metabase-enterprise/sandboxes/
+      name: Run Cypress tests
+      env:
+        TERM: xterm
+
+  stress-test-ee520-7:
+    runs-on: ubuntu-20.04
+    timeout-minutes: 45
+    needs: build-uberjar
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/download-artifact@v2
+      name: Retrieve uberjar artifact
+      with:
+        name: uberjar
+    - name: Prepare uberjar
+      run: |
+        mkdir -p target/uberjar
+        mv metabase.jar target/uberjar/
+        ls -l target/uberjar/
+    - name: Prepare Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: 14.x
+    - name: Prepare JDK 11
+      uses: actions/setup-java@v1
+      with:
+        java-version: 11
+    - name: Install Clojure CLI
+      run: |
+        curl -O https://download.clojure.org/install/linux-install-1.10.1.727.sh
+        chmod +x linux-install-1.10.1.727.sh
+        sudo ./linux-install-1.10.1.727.sh
+    - name: Check versions
+      run: |
+        echo "Node.js `node --version`"
+        echo "yarn `yarn --version`"
+        java -version
+    - name: Get yarn cache
+      uses: actions/cache@v2
+      with:
+        path: ~/.cache/yarn
+        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+
+    - run: ./bin/build version
+
+    - run: yarn test-cypress-no-build --testFiles enterprise/frontend/test/metabase-enterprise/sandboxes/
+      name: Run Cypress tests
+      env:
+        TERM: xterm
+
+  stress-test-ee520-8:
+    runs-on: ubuntu-20.04
+    timeout-minutes: 45
+    needs: build-uberjar
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/download-artifact@v2
+      name: Retrieve uberjar artifact
+      with:
+        name: uberjar
+    - name: Prepare uberjar
+      run: |
+        mkdir -p target/uberjar
+        mv metabase.jar target/uberjar/
+        ls -l target/uberjar/
+    - name: Prepare Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: 14.x
+    - name: Prepare JDK 11
+      uses: actions/setup-java@v1
+      with:
+        java-version: 11
+    - name: Install Clojure CLI
+      run: |
+        curl -O https://download.clojure.org/install/linux-install-1.10.1.727.sh
+        chmod +x linux-install-1.10.1.727.sh
+        sudo ./linux-install-1.10.1.727.sh
+    - name: Check versions
+      run: |
+        echo "Node.js `node --version`"
+        echo "yarn `yarn --version`"
+        java -version
+    - name: Get yarn cache
+      uses: actions/cache@v2
+      with:
+        path: ~/.cache/yarn
+        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+
+    - run: ./bin/build version
+
+    - run: yarn test-cypress-no-build --testFiles enterprise/frontend/test/metabase-enterprise/sandboxes/
+      name: Run Cypress tests
+      env:
+        TERM: xterm
+
+  stress-test-ee520-9:
+    runs-on: ubuntu-20.04
+    timeout-minutes: 45
+    needs: build-uberjar
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/download-artifact@v2
+      name: Retrieve uberjar artifact
+      with:
+        name: uberjar
+    - name: Prepare uberjar
+      run: |
+        mkdir -p target/uberjar
+        mv metabase.jar target/uberjar/
+        ls -l target/uberjar/
+    - name: Prepare Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: 14.x
+    - name: Prepare JDK 11
+      uses: actions/setup-java@v1
+      with:
+        java-version: 11
+    - name: Install Clojure CLI
+      run: |
+        curl -O https://download.clojure.org/install/linux-install-1.10.1.727.sh
+        chmod +x linux-install-1.10.1.727.sh
+        sudo ./linux-install-1.10.1.727.sh
+    - name: Check versions
+      run: |
+        echo "Node.js `node --version`"
+        echo "yarn `yarn --version`"
+        java -version
+    - name: Get yarn cache
+      uses: actions/cache@v2
+      with:
+        path: ~/.cache/yarn
+        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+
+    - run: ./bin/build version
+
+    - run: yarn test-cypress-no-build --testFiles enterprise/frontend/test/metabase-enterprise/sandboxes/
+      name: Run Cypress tests
+      env:
+        TERM: xterm
+
+  stress-test-ee520-10:
+    runs-on: ubuntu-20.04
+    timeout-minutes: 45
+    needs: build-uberjar
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/download-artifact@v2
+      name: Retrieve uberjar artifact
+      with:
+        name: uberjar
+    - name: Prepare uberjar
+      run: |
+        mkdir -p target/uberjar
+        mv metabase.jar target/uberjar/
+        ls -l target/uberjar/
+    - name: Prepare Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: 14.x
+    - name: Prepare JDK 11
+      uses: actions/setup-java@v1
+      with:
+        java-version: 11
+    - name: Install Clojure CLI
+      run: |
+        curl -O https://download.clojure.org/install/linux-install-1.10.1.727.sh
+        chmod +x linux-install-1.10.1.727.sh
+        sudo ./linux-install-1.10.1.727.sh
+    - name: Check versions
+      run: |
+        echo "Node.js `node --version`"
+        echo "yarn `yarn --version`"
+        java -version
+    - name: Get yarn cache
+      uses: actions/cache@v2
+      with:
+        path: ~/.cache/yarn
+        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+
+    - run: ./bin/build version
+
+    - run: yarn test-cypress-no-build --testFiles enterprise/frontend/test/metabase-enterprise/sandboxes/
+      name: Run Cypress tests
+      env:
+        TERM: xterm
+
+  stress-test-ee520-11:
+    runs-on: ubuntu-20.04
+    timeout-minutes: 45
+    needs: build-uberjar
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/download-artifact@v2
+      name: Retrieve uberjar artifact
+      with:
+        name: uberjar
+    - name: Prepare uberjar
+      run: |
+        mkdir -p target/uberjar
+        mv metabase.jar target/uberjar/
+        ls -l target/uberjar/
+    - name: Prepare Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: 14.x
+    - name: Prepare JDK 11
+      uses: actions/setup-java@v1
+      with:
+        java-version: 11
+    - name: Install Clojure CLI
+      run: |
+        curl -O https://download.clojure.org/install/linux-install-1.10.1.727.sh
+        chmod +x linux-install-1.10.1.727.sh
+        sudo ./linux-install-1.10.1.727.sh
+    - name: Check versions
+      run: |
+        echo "Node.js `node --version`"
+        echo "yarn `yarn --version`"
+        java -version
+    - name: Get yarn cache
+      uses: actions/cache@v2
+      with:
+        path: ~/.cache/yarn
+        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+
+    - run: ./bin/build version
+
+    - run: yarn test-cypress-no-build --testFiles enterprise/frontend/test/metabase-enterprise/sandboxes/
+      name: Run Cypress tests
+      env:
+        TERM: xterm
+
+  stress-test-ee520-12:
+    runs-on: ubuntu-20.04
+    timeout-minutes: 45
+    needs: build-uberjar
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/download-artifact@v2
+      name: Retrieve uberjar artifact
+      with:
+        name: uberjar
+    - name: Prepare uberjar
+      run: |
+        mkdir -p target/uberjar
+        mv metabase.jar target/uberjar/
+        ls -l target/uberjar/
+    - name: Prepare Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: 14.x
+    - name: Prepare JDK 11
+      uses: actions/setup-java@v1
+      with:
+        java-version: 11
+    - name: Install Clojure CLI
+      run: |
+        curl -O https://download.clojure.org/install/linux-install-1.10.1.727.sh
+        chmod +x linux-install-1.10.1.727.sh
+        sudo ./linux-install-1.10.1.727.sh
+    - name: Check versions
+      run: |
+        echo "Node.js `node --version`"
+        echo "yarn `yarn --version`"
+        java -version
+    - name: Get yarn cache
+      uses: actions/cache@v2
+      with:
+        path: ~/.cache/yarn
+        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+
+    - run: ./bin/build version
+
+    - run: yarn test-cypress-no-build --testFiles enterprise/frontend/test/metabase-enterprise/sandboxes/
+      name: Run Cypress tests
+      env:
+        TERM: xterm
+
+  stress-test-ee520-13:
+    runs-on: ubuntu-20.04
+    timeout-minutes: 45
+    needs: build-uberjar
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/download-artifact@v2
+      name: Retrieve uberjar artifact
+      with:
+        name: uberjar
+    - name: Prepare uberjar
+      run: |
+        mkdir -p target/uberjar
+        mv metabase.jar target/uberjar/
+        ls -l target/uberjar/
+    - name: Prepare Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: 14.x
+    - name: Prepare JDK 11
+      uses: actions/setup-java@v1
+      with:
+        java-version: 11
+    - name: Install Clojure CLI
+      run: |
+        curl -O https://download.clojure.org/install/linux-install-1.10.1.727.sh
+        chmod +x linux-install-1.10.1.727.sh
+        sudo ./linux-install-1.10.1.727.sh
+    - name: Check versions
+      run: |
+        echo "Node.js `node --version`"
+        echo "yarn `yarn --version`"
+        java -version
+    - name: Get yarn cache
+      uses: actions/cache@v2
+      with:
+        path: ~/.cache/yarn
+        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+
+    - run: ./bin/build version
+
+    - run: yarn test-cypress-no-build --testFiles enterprise/frontend/test/metabase-enterprise/sandboxes/
+      name: Run Cypress tests
+      env:
+        TERM: xterm
+
+  stress-test-ee520-14:
+    runs-on: ubuntu-20.04
+    timeout-minutes: 45
+    needs: build-uberjar
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/download-artifact@v2
+      name: Retrieve uberjar artifact
+      with:
+        name: uberjar
+    - name: Prepare uberjar
+      run: |
+        mkdir -p target/uberjar
+        mv metabase.jar target/uberjar/
+        ls -l target/uberjar/
+    - name: Prepare Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: 14.x
+    - name: Prepare JDK 11
+      uses: actions/setup-java@v1
+      with:
+        java-version: 11
+    - name: Install Clojure CLI
+      run: |
+        curl -O https://download.clojure.org/install/linux-install-1.10.1.727.sh
+        chmod +x linux-install-1.10.1.727.sh
+        sudo ./linux-install-1.10.1.727.sh
+    - name: Check versions
+      run: |
+        echo "Node.js `node --version`"
+        echo "yarn `yarn --version`"
+        java -version
+    - name: Get yarn cache
+      uses: actions/cache@v2
+      with:
+        path: ~/.cache/yarn
+        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+
+    - run: ./bin/build version
+
+    - run: yarn test-cypress-no-build --testFiles enterprise/frontend/test/metabase-enterprise/sandboxes/
+      name: Run Cypress tests
+      env:
+        TERM: xterm
+
+  stress-test-ee520-15:
+    runs-on: ubuntu-20.04
+    timeout-minutes: 45
+    needs: build-uberjar
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/download-artifact@v2
+      name: Retrieve uberjar artifact
+      with:
+        name: uberjar
+    - name: Prepare uberjar
+      run: |
+        mkdir -p target/uberjar
+        mv metabase.jar target/uberjar/
+        ls -l target/uberjar/
+    - name: Prepare Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: 14.x
+    - name: Prepare JDK 11
+      uses: actions/setup-java@v1
+      with:
+        java-version: 11
+    - name: Install Clojure CLI
+      run: |
+        curl -O https://download.clojure.org/install/linux-install-1.10.1.727.sh
+        chmod +x linux-install-1.10.1.727.sh
+        sudo ./linux-install-1.10.1.727.sh
+    - name: Check versions
+      run: |
+        echo "Node.js `node --version`"
+        echo "yarn `yarn --version`"
+        java -version
+    - name: Get yarn cache
+      uses: actions/cache@v2
+      with:
+        path: ~/.cache/yarn
+        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+
+    - run: ./bin/build version
+
+    - run: yarn test-cypress-no-build --testFiles enterprise/frontend/test/metabase-enterprise/sandboxes/
+      name: Run Cypress tests
+      env:
+        TERM: xterm
+
+  stress-test-ee520-16:
+    runs-on: ubuntu-20.04
+    timeout-minutes: 45
+    needs: build-uberjar
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/download-artifact@v2
+      name: Retrieve uberjar artifact
+      with:
+        name: uberjar
+    - name: Prepare uberjar
+      run: |
+        mkdir -p target/uberjar
+        mv metabase.jar target/uberjar/
+        ls -l target/uberjar/
+    - name: Prepare Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: 14.x
+    - name: Prepare JDK 11
+      uses: actions/setup-java@v1
+      with:
+        java-version: 11
+    - name: Install Clojure CLI
+      run: |
+        curl -O https://download.clojure.org/install/linux-install-1.10.1.727.sh
+        chmod +x linux-install-1.10.1.727.sh
+        sudo ./linux-install-1.10.1.727.sh
+    - name: Check versions
+      run: |
+        echo "Node.js `node --version`"
+        echo "yarn `yarn --version`"
+        java -version
+    - name: Get yarn cache
+      uses: actions/cache@v2
+      with:
+        path: ~/.cache/yarn
+        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+
+    - run: ./bin/build version
+
+    - run: yarn test-cypress-no-build --testFiles enterprise/frontend/test/metabase-enterprise/sandboxes/
+      name: Run Cypress tests
+      env:
+        TERM: xterm
+
+  stress-test-ee520-17:
+    runs-on: ubuntu-20.04
+    timeout-minutes: 45
+    needs: build-uberjar
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/download-artifact@v2
+      name: Retrieve uberjar artifact
+      with:
+        name: uberjar
+    - name: Prepare uberjar
+      run: |
+        mkdir -p target/uberjar
+        mv metabase.jar target/uberjar/
+        ls -l target/uberjar/
+    - name: Prepare Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: 14.x
+    - name: Prepare JDK 11
+      uses: actions/setup-java@v1
+      with:
+        java-version: 11
+    - name: Install Clojure CLI
+      run: |
+        curl -O https://download.clojure.org/install/linux-install-1.10.1.727.sh
+        chmod +x linux-install-1.10.1.727.sh
+        sudo ./linux-install-1.10.1.727.sh
+    - name: Check versions
+      run: |
+        echo "Node.js `node --version`"
+        echo "yarn `yarn --version`"
+        java -version
+    - name: Get yarn cache
+      uses: actions/cache@v2
+      with:
+        path: ~/.cache/yarn
+        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+
+    - run: ./bin/build version
+
+    - run: yarn test-cypress-no-build --testFiles enterprise/frontend/test/metabase-enterprise/sandboxes/
+      name: Run Cypress tests
+      env:
+        TERM: xterm
+
+  stress-test-ee520-18:
+    runs-on: ubuntu-20.04
+    timeout-minutes: 45
+    needs: build-uberjar
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/download-artifact@v2
+      name: Retrieve uberjar artifact
+      with:
+        name: uberjar
+    - name: Prepare uberjar
+      run: |
+        mkdir -p target/uberjar
+        mv metabase.jar target/uberjar/
+        ls -l target/uberjar/
+    - name: Prepare Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: 14.x
+    - name: Prepare JDK 11
+      uses: actions/setup-java@v1
+      with:
+        java-version: 11
+    - name: Install Clojure CLI
+      run: |
+        curl -O https://download.clojure.org/install/linux-install-1.10.1.727.sh
+        chmod +x linux-install-1.10.1.727.sh
+        sudo ./linux-install-1.10.1.727.sh
+    - name: Check versions
+      run: |
+        echo "Node.js `node --version`"
+        echo "yarn `yarn --version`"
+        java -version
+    - name: Get yarn cache
+      uses: actions/cache@v2
+      with:
+        path: ~/.cache/yarn
+        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+
+    - run: ./bin/build version
+
+    - run: yarn test-cypress-no-build --testFiles enterprise/frontend/test/metabase-enterprise/sandboxes/
+      name: Run Cypress tests
+      env:
+        TERM: xterm
+
+  stress-test-ee520-19:
+    runs-on: ubuntu-20.04
+    timeout-minutes: 45
+    needs: build-uberjar
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/download-artifact@v2
+      name: Retrieve uberjar artifact
+      with:
+        name: uberjar
+    - name: Prepare uberjar
+      run: |
+        mkdir -p target/uberjar
+        mv metabase.jar target/uberjar/
+        ls -l target/uberjar/
+    - name: Prepare Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: 14.x
+    - name: Prepare JDK 11
+      uses: actions/setup-java@v1
+      with:
+        java-version: 11
+    - name: Install Clojure CLI
+      run: |
+        curl -O https://download.clojure.org/install/linux-install-1.10.1.727.sh
+        chmod +x linux-install-1.10.1.727.sh
+        sudo ./linux-install-1.10.1.727.sh
+    - name: Check versions
+      run: |
+        echo "Node.js `node --version`"
+        echo "yarn `yarn --version`"
+        java -version
+    - name: Get yarn cache
+      uses: actions/cache@v2
+      with:
+        path: ~/.cache/yarn
+        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+
+    - run: ./bin/build version
+
+    - run: yarn test-cypress-no-build --testFiles enterprise/frontend/test/metabase-enterprise/sandboxes/
+      name: Run Cypress tests
+      env:
+        TERM: xterm
+
+  stress-test-ee520-20:
+    runs-on: ubuntu-20.04
+    timeout-minutes: 45
+    needs: build-uberjar
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/download-artifact@v2
+      name: Retrieve uberjar artifact
+      with:
+        name: uberjar
+    - name: Prepare uberjar
+      run: |
+        mkdir -p target/uberjar
+        mv metabase.jar target/uberjar/
+        ls -l target/uberjar/
+    - name: Prepare Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: 14.x
+    - name: Prepare JDK 11
+      uses: actions/setup-java@v1
+      with:
+        java-version: 11
+    - name: Install Clojure CLI
+      run: |
+        curl -O https://download.clojure.org/install/linux-install-1.10.1.727.sh
+        chmod +x linux-install-1.10.1.727.sh
+        sudo ./linux-install-1.10.1.727.sh
+    - name: Check versions
+      run: |
+        echo "Node.js `node --version`"
+        echo "yarn `yarn --version`"
+        java -version
+    - name: Get yarn cache
+      uses: actions/cache@v2
+      with:
+        path: ~/.cache/yarn
+        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+
+    - run: ./bin/build version
+
+    - run: yarn test-cypress-no-build --testFiles enterprise/frontend/test/metabase-enterprise/sandboxes/
+      name: Run Cypress tests
+      env:
+        TERM: xterm
