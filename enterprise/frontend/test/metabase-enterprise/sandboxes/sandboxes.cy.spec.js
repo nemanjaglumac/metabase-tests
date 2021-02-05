@@ -273,7 +273,7 @@ describeWithToken("formatting > sandboxes", () => {
       cy.findByText("11"); // Sum of orders for user with ID #1
     });
 
-    it.skip("SB question with `case` CC should substitute the `else` argument's table (metabase-enterprise#548)", () => {
+    it("SB question with `case` CC should substitute the `else` argument's table (metabase-enterprise#548)", () => {
       const QUESTION_NAME = "EE_548";
       const CC_NAME = "CC_548"; // Custom column
 
@@ -339,7 +339,7 @@ describeWithToken("formatting > sandboxes", () => {
       });
     });
 
-    it.skip("drill-through should work on implicit joined tables with sandboxes (metabase#13641)", () => {
+    it("drill-through should work on implicit joined tables with sandboxes (metabase#13641)", () => {
       const QUESTION_NAME = "13641";
 
       cy.log("**-- 1. Sandbox `Orders` table on `user_id` attribute --**");
@@ -510,7 +510,7 @@ describeWithToken("formatting > sandboxes", () => {
        * There isn't an exact issue that this test reproduces, but it is basically a version of (metabase-enterprise#520)
        * that uses a query builder instead of SQL based questions.
        */
-      it.skip("should be able to sandbox using query builder saved questions", () => {
+      it("should be able to sandbox using query builder saved questions", () => {
         cy.server();
         cy.route("POST", "/api/dataset").as("dataset");
 
@@ -614,7 +614,7 @@ describeWithToken("formatting > sandboxes", () => {
         it.only(`${test.toUpperCase()} version:\n advanced sandboxing should not ignore data model features like object detail of FK (metabase-enterprise#520)`, () => {
           // Remove of comment-out to enable test run for both scenarios
           // test === "normal"
-          //   ? cy.state("runnable").skip() // https://github.com/cypress-io/cypress-skip-test/blob/master/index.js#L72
+          //   ? cy.state("runnable")() // https://github.com/cypress-io/cypress-skip-test/blob/master/index.js#L72
           //   : null;
 
           cy.server();
@@ -755,7 +755,7 @@ describeWithToken("formatting > sandboxes", () => {
         });
       });
 
-      it.skip("simple sandboxing should work (metabase#14629)", () => {
+      it("simple sandboxing should work (metabase#14629)", () => {
         cy.server();
         cy.route("POST", "/api/dataset").as("dataset");
 
@@ -791,7 +791,7 @@ describeWithToken("formatting > sandboxes", () => {
       });
     });
 
-    it.skip("should work on questions with joins, with sandboxed target table, where target fields cannot be filtered (metabase#13642)", () => {
+    it("should work on questions with joins, with sandboxed target table, where target fields cannot be filtered (metabase#13642)", () => {
       const QUESTION_NAME = "13642";
       const PRODUCTS_ALIAS = "Products";
 
