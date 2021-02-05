@@ -9,7 +9,7 @@ jobs:
     timeout-minutes: 10
     steps:
     - name: Download prebuilt uberjar
-      run: curl -o metabase.jar -L https://downloads.metabase.com/v0.37.8/metabase.jar
+      run: curl -o metabase.jar -L https://www.dropbox.com/s/1fhihddzadubzgg/metabase-EE-4aee3ee.jar
     - uses: actions/upload-artifact@v2
       with:
         name: uberjar
