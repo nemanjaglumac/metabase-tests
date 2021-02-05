@@ -57,7 +57,7 @@ describe("scenarios > visualizations > maps", () => {
     cy.get(".leaflet-container");
   });
 
-  it.skip("should suggest map visualization regardless of the first column type (metabase#14254)", () => {
+  it.only("should suggest map visualization regardless of the first column type (metabase#14254)", () => {
     cy.request("POST", "/api/card", {
       name: "14254",
       dataset_query: {
