@@ -2,6 +2,12 @@ name: Cypress Stress Testing
 
 on: [push, pull_request]
 
+env:
+  MB_EDITION: ee
+  HAS_ENTERPRISE_TOKEN: true
+  ENABLE_ENTERPRISE_EDITION: true
+  ENTERPRISE_TOKEN: ${{ secrets.ENTERPRISE_TOKEN }}
+
 jobs:
 
   build-uberjar:
