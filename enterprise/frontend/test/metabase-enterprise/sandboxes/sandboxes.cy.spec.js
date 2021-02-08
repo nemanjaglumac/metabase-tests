@@ -791,7 +791,7 @@ describeWithToken("formatting > sandboxes", () => {
       });
     });
 
-    it("should work on questions with joins, with sandboxed target table, where target fields cannot be filtered (metabase#13642)", () => {
+    it.skip("should work on questions with joins, with sandboxed target table, where target fields cannot be filtered (metabase#13642)", () => {
       const QUESTION_NAME = "13642";
       const PRODUCTS_ALIAS = "Products";
 
