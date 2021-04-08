@@ -25,7 +25,7 @@ describe("scenarios > visualizations > drillthroughs > chart drill", () => {
     cy.signInAsAdmin();
   });
 
-  it("should allow brush date filter", () => {
+  it.only("should allow brush date filter", () => {
     cy.createQuestion({
       name: "Brush Date Filter",
       query: {
