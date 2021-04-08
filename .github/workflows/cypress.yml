@@ -67,6 +67,18 @@ jobs:
       env:
         TERM: xterm
 
+    - uses: actions/upload-artifact@v1
+      if: always()
+      with:
+        name: cypress-screenshots
+        path: cypress/screenshots
+
+    - uses: actions/upload-artifact@v1
+      if: always()
+      with:
+        name: cypress-videos
+        path: cypress/videos
+
   stress-brush-filter-2:
     runs-on: ubuntu-20.04
     timeout-minutes: 45
@@ -112,6 +124,18 @@ jobs:
       name: Run Cypress tests
       env:
         TERM: xterm
+
+    - uses: actions/upload-artifact@v1
+      if: always()
+      with:
+        name: cypress-screenshots
+        path: cypress/screenshots
+
+    - uses: actions/upload-artifact@v1
+      if: always()
+      with:
+        name: cypress-videos
+        path: cypress/videos
 
   stress-brush-filter-3:
     runs-on: ubuntu-20.04
@@ -159,6 +183,18 @@ jobs:
       env:
         TERM: xterm
 
+    - uses: actions/upload-artifact@v1
+      if: always()
+      with:
+        name: cypress-screenshots
+        path: cypress/screenshots
+
+    - uses: actions/upload-artifact@v1
+      if: always()
+      with:
+        name: cypress-videos
+        path: cypress/videos
+
   stress-brush-filter-4:
     runs-on: ubuntu-20.04
     timeout-minutes: 45
@@ -204,6 +240,18 @@ jobs:
       name: Run Cypress tests
       env:
         TERM: xterm
+
+    - uses: actions/upload-artifact@v1
+      if: always()
+      with:
+        name: cypress-screenshots
+        path: cypress/screenshots
+
+    - uses: actions/upload-artifact@v1
+      if: always()
+      with:
+        name: cypress-videos
+        path: cypress/videos
 
   stress-brush-filter-5:
     runs-on: ubuntu-20.04
@@ -251,6 +299,18 @@ jobs:
       env:
         TERM: xterm
 
+    - uses: actions/upload-artifact@v1
+      if: always()
+      with:
+        name: cypress-screenshots
+        path: cypress/screenshots
+
+    - uses: actions/upload-artifact@v1
+      if: always()
+      with:
+        name: cypress-videos
+        path: cypress/videos
+
   stress-brush-filter-6:
     runs-on: ubuntu-20.04
     timeout-minutes: 45
@@ -296,6 +356,18 @@ jobs:
       name: Run Cypress tests
       env:
         TERM: xterm
+
+    - uses: actions/upload-artifact@v1
+      if: always()
+      with:
+        name: cypress-screenshots
+        path: cypress/screenshots
+
+    - uses: actions/upload-artifact@v1
+      if: always()
+      with:
+        name: cypress-videos
+        path: cypress/videos
 
   stress-brush-filter-7:
     runs-on: ubuntu-20.04
@@ -343,6 +415,18 @@ jobs:
       env:
         TERM: xterm
 
+    - uses: actions/upload-artifact@v1
+      if: always()
+      with:
+        name: cypress-screenshots
+        path: cypress/screenshots
+
+    - uses: actions/upload-artifact@v1
+      if: always()
+      with:
+        name: cypress-videos
+        path: cypress/videos
+
   stress-brush-filter-8:
     runs-on: ubuntu-20.04
     timeout-minutes: 45
@@ -388,6 +472,18 @@ jobs:
       name: Run Cypress tests
       env:
         TERM: xterm
+
+    - uses: actions/upload-artifact@v1
+      if: always()
+      with:
+        name: cypress-screenshots
+        path: cypress/screenshots
+
+    - uses: actions/upload-artifact@v1
+      if: always()
+      with:
+        name: cypress-videos
+        path: cypress/videos
 
   stress-brush-filter-9:
     runs-on: ubuntu-20.04
@@ -435,6 +531,18 @@ jobs:
       env:
         TERM: xterm
 
+    - uses: actions/upload-artifact@v1
+      if: always()
+      with:
+        name: cypress-screenshots
+        path: cypress/screenshots
+
+    - uses: actions/upload-artifact@v1
+      if: always()
+      with:
+        name: cypress-videos
+        path: cypress/videos
+
   stress-brush-filter-10:
     runs-on: ubuntu-20.04
     timeout-minutes: 45
@@ -480,6 +588,18 @@ jobs:
       name: Run Cypress tests
       env:
         TERM: xterm
+
+    - uses: actions/upload-artifact@v1
+      if: always()
+      with:
+        name: cypress-screenshots
+        path: cypress/screenshots
+
+    - uses: actions/upload-artifact@v1
+      if: always()
+      with:
+        name: cypress-videos
+        path: cypress/videos
 
   stress-brush-filter-11:
     runs-on: ubuntu-20.04
@@ -527,6 +647,18 @@ jobs:
       env:
         TERM: xterm
 
+    - uses: actions/upload-artifact@v1
+      if: always()
+      with:
+        name: cypress-screenshots
+        path: cypress/screenshots
+
+    - uses: actions/upload-artifact@v1
+      if: always()
+      with:
+        name: cypress-videos
+        path: cypress/videos
+
   stress-brush-filter-12:
     runs-on: ubuntu-20.04
     timeout-minutes: 45
@@ -572,6 +704,18 @@ jobs:
       name: Run Cypress tests
       env:
         TERM: xterm
+
+    - uses: actions/upload-artifact@v1
+      if: always()
+      with:
+        name: cypress-screenshots
+        path: cypress/screenshots
+
+    - uses: actions/upload-artifact@v1
+      if: always()
+      with:
+        name: cypress-videos
+        path: cypress/videos
 
   stress-brush-filter-13:
     runs-on: ubuntu-20.04
@@ -619,6 +763,18 @@ jobs:
       env:
         TERM: xterm
 
+    - uses: actions/upload-artifact@v1
+      if: always()
+      with:
+        name: cypress-screenshots
+        path: cypress/screenshots
+
+    - uses: actions/upload-artifact@v1
+      if: always()
+      with:
+        name: cypress-videos
+        path: cypress/videos
+
   stress-brush-filter-14:
     runs-on: ubuntu-20.04
     timeout-minutes: 45
@@ -664,6 +820,18 @@ jobs:
       name: Run Cypress tests
       env:
         TERM: xterm
+
+    - uses: actions/upload-artifact@v1
+      if: always()
+      with:
+        name: cypress-screenshots
+        path: cypress/screenshots
+
+    - uses: actions/upload-artifact@v1
+      if: always()
+      with:
+        name: cypress-videos
+        path: cypress/videos
 
   stress-brush-filter-15:
     runs-on: ubuntu-20.04
@@ -711,6 +879,18 @@ jobs:
       env:
         TERM: xterm
 
+    - uses: actions/upload-artifact@v1
+      if: always()
+      with:
+        name: cypress-screenshots
+        path: cypress/screenshots
+
+    - uses: actions/upload-artifact@v1
+      if: always()
+      with:
+        name: cypress-videos
+        path: cypress/videos
+
   stress-brush-filter-16:
     runs-on: ubuntu-20.04
     timeout-minutes: 45
@@ -756,6 +936,18 @@ jobs:
       name: Run Cypress tests
       env:
         TERM: xterm
+
+    - uses: actions/upload-artifact@v1
+      if: always()
+      with:
+        name: cypress-screenshots
+        path: cypress/screenshots
+
+    - uses: actions/upload-artifact@v1
+      if: always()
+      with:
+        name: cypress-videos
+        path: cypress/videos
 
   stress-brush-filter-17:
     runs-on: ubuntu-20.04
@@ -803,6 +995,18 @@ jobs:
       env:
         TERM: xterm
 
+    - uses: actions/upload-artifact@v1
+      if: always()
+      with:
+        name: cypress-screenshots
+        path: cypress/screenshots
+
+    - uses: actions/upload-artifact@v1
+      if: always()
+      with:
+        name: cypress-videos
+        path: cypress/videos
+
   stress-brush-filter-18:
     runs-on: ubuntu-20.04
     timeout-minutes: 45
@@ -848,6 +1052,18 @@ jobs:
       name: Run Cypress tests
       env:
         TERM: xterm
+
+    - uses: actions/upload-artifact@v1
+      if: always()
+      with:
+        name: cypress-screenshots
+        path: cypress/screenshots
+
+    - uses: actions/upload-artifact@v1
+      if: always()
+      with:
+        name: cypress-videos
+        path: cypress/videos
 
   stress-brush-filter-19:
     runs-on: ubuntu-20.04
@@ -895,6 +1111,18 @@ jobs:
       env:
         TERM: xterm
 
+    - uses: actions/upload-artifact@v1
+      if: always()
+      with:
+        name: cypress-screenshots
+        path: cypress/screenshots
+
+    - uses: actions/upload-artifact@v1
+      if: always()
+      with:
+        name: cypress-videos
+        path: cypress/videos
+
   stress-brush-filter-20:
     runs-on: ubuntu-20.04
     timeout-minutes: 45
@@ -940,3 +1168,15 @@ jobs:
       name: Run Cypress tests
       env:
         TERM: xterm
+
+    - uses: actions/upload-artifact@v1
+      if: always()
+      with:
+        name: cypress-screenshots
+        path: cypress/screenshots
+
+    - uses: actions/upload-artifact@v1
+      if: always()
+      with:
+        name: cypress-videos
+        path: cypress/videos
