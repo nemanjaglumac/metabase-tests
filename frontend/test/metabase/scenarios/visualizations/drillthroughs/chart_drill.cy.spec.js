@@ -53,8 +53,8 @@ describe("scenarios > visualizations > drillthroughs > chart drill", () => {
       // drag across to filter
       cy.get(".Visualization")
         .trigger("mousedown", 100, 200)
-        .trigger("mousemove", 200, 200)
-        .trigger("mouseup", 200, 200);
+        .trigger("mousemove", 210, 200)
+        .trigger("mouseup", 210, 200);
 
       // new filter applied
       cy.contains("Created At between May, 2016 September, 2016");
