@@ -2,6 +2,21 @@ name: Frontend
 
 on:
   pull_request:
+    branches:
+      - master
+      - 'release**'
+      - 'feature**'
+      - 'fix**'
+      - 'ci**'
+    tags:
+      - '**'
+    paths:
+    - '**/frontend/**'
+    - 'shared/**'
+    - 'docs/**'
+    - '**/package.json'
+    - '**/yarn.lock'
+    - '.github/workflows/**'
   push:
     branches:
       - master

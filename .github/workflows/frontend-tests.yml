@@ -2,6 +2,24 @@ name: Frontend Tests
 
 on:
   pull_request:
+    branches:
+      - master
+      - 'release**'
+      - 'feature**'
+      - 'fix**'
+      - 'ci**'
+    tags:
+      - '**'
+    paths:
+    - '**/frontend/**'
+    - '!frontend/test/e2e/**'
+    - '!**/*.cy.*'
+    - '!**/*cypress*'
+    - '!**/*.md'
+    - 'shared/**'
+    - '**/package.json'
+    - '**/yarn.lock'
+    - '.github/workflows/**'
   push:
     branches:
       - master
