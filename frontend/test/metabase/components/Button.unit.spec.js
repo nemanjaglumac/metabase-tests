@@ -16,6 +16,7 @@ describe("Button", () => {
   });
 
   it("should render correctly with an icon", () => {
+    // Dummy comment
     render(<Button icon="star">{title}</Button>);
 
     screen.getByRole("img", { name: "star icon" });
