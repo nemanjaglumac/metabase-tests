@@ -10,6 +10,7 @@ const new_user = {
 };
 
 describe("metabase-smoketest > admin", () => {
+  // Dummy comment
   before(() => restore("blank"));
 
   describe("Admin can setup an account", () => {
