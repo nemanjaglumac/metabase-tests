@@ -5,6 +5,7 @@ import { render, screen } from "@testing-library/react";
 import Button from "metabase/components/Button";
 
 describe("Button", () => {
+  // Trigger related change
   const title = "Clickity click";
 
   it("should render correctly", () => {
