@@ -20,7 +20,7 @@ const {
 const { DATA_GROUP } = USER_GROUPS;
 
 describe("scenarios > visualizations > drillthroughs > chart drill", () => {
-  // Test triggering unrelated change
+  // Test triggering unrelated change this time when PR was already opened
   beforeEach(() => {
     restore();
     cy.signInAsAdmin();
