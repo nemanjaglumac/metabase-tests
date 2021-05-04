@@ -16,9 +16,6 @@ on:
     branches:
       - master
       - 'release**'
-      - 'feature**'
-      - 'fix**'
-      - 'ci**'
     tags:
       - '**'
     paths:
