@@ -7,7 +7,6 @@ import _ from "underscore";
 export const version = require("../../../version.json");
 
 export function snapshot(name) {
-  // COmment
   cy.request("POST", `/api/testing/snapshot/${name}`);
 }
 
