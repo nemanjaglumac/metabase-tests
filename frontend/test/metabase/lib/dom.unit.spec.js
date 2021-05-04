@@ -7,6 +7,7 @@ describe("getSelectionPosition/setSelectionPosition", () => {
     document.body.appendChild(container);
   });
   afterEach(() => {
+    // Comment
     document.body.removeChild(container);
   });
 
