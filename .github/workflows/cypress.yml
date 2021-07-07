@@ -1,0 +1,71 @@
+name: Stress test contentEditable @03bdd07
+
+on: [push, pull_request]
+
+env:
+  MB_EDITION: ee
+  HAS_ENTERPRISE_TOKEN: true
+  ENABLE_ENTERPRISE_EDITION: true
+  ENTERPRISE_TOKEN: ${{ secrets.ENTERPRISE_TOKEN }}
+
+jobs:
+
+  build-uberjar:
+    runs-on: ubuntu-20.04
+    timeout-minutes: 10
+    steps:
+    - name: Download prebuilt uberjar
+      run: curl -o metabase.jar -L https://734244-30203935-gh.circle-artifacts.com/0/home/circleci/metabase/metabase/target/uberjar/metabase.jar
+    - uses: actions/upload-artifact@v2
+      with:
+        name: uberjar
+        path: './metabase.jar'
+
+  stress-test-contenteditable-1:
+    runs-on: ubuntu-20.04
+    timeout-minutes: 45
+    needs: build-uberjar
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/download-artifact@v2
+      name: Retrieve uberjar artifact
+      with:
+        name: uberjar
+    - name: Prepare uberjar
+      run: |
+        mkdir -p target/uberjar
+        mv metabase.jar target/uberjar/
+        ls -l target/uberjar/
+    - name: Prepare Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: 14.x
+    - name: Prepare JDK 11
+      uses: actions/setup-java@v1
+      with:
+        java-version: 11
+    - name: Install Clojure CLI
+      run: |
+        curl -O https://download.clojure.org/install/linux-install-1.10.1.727.sh
+        chmod +x linux-install-1.10.1.727.sh
+        sudo ./linux-install-1.10.1.727.sh
+    - name: Check versions
+      run: |
+        echo "Node.js `node --version`"
+        echo "yarn `yarn --version`"
+        java -version
+    - name: Get yarn cache
+      uses: actions/cache@v2
+      with:
+        path: ~/.cache/yarn
+        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+
+    - run: ./bin/build version
+
+    - name: Run Cypress tests
+      uses: cypress-io/github-action@v2
+      with:
+        install: false
+        command: yarn test-cypress-no-build --folder frontend/test/metabase/scenarios/native
+      env:
+        TERM: xterm
