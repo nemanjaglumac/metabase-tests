@@ -1,7 +1,6 @@
 name: Cypress GH Action
 
-on:
-  push:
+on: push
 
 jobs:
   build:
@@ -107,18 +106,6 @@ jobs:
     - name: Prepare back-end environment
       uses: ./.github/actions/prepare-backend
 
-    - name: Get Cypress cache
-      uses: actions/cache@v2
-      with:
-        path: ~/.cache/Cypress
-        key: ${{ runner.os }}-Cypress-${{ hashFiles('**/yarn.lock') }}
-    - name: Ensure that Cypress executable is ready
-      run: |
-        yarn cypress install
-        yarn cypress cache path
-        yarn cypress cache list
-        yarn cypress verify
-
     - uses: actions/download-artifact@v2
       name: Retrieve uberjar artifact for ${{ matrix.edition }}
       with:
@@ -128,10 +115,12 @@ jobs:
         jar xf target/uberjar/metabase.jar version.properties
         mv version.properties resources/
 
-    - run: yarn run test-cypress-no-build --folder ${{ matrix.folder }}
-      name: Run Cypress tests on ${{ matrix.folder }}
-      env:
-        TERM: xterm
+    - name: Run Cypress tests on ${{ matrix.folder }}
+      uses: cypress-io/github-action@v2
+      with:
+        command: yarn run test-cypress-no-build --folder ${{ matrix.folder }}
+        env: TERM=xterm
+
     - name: Upload Cypress recording upon failure
       uses: actions/upload-artifact@v2
       if: failure()
