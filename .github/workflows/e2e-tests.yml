@@ -106,8 +106,10 @@ jobs:
     - name: Run Cypress tests on ${{ matrix.folder }}
       uses: cypress-io/github-action@v2
       with:
+        cache-key: ${{ runner.os }}-Cypress-${{ hashFiles('**/yarn.lock') }}
         command: yarn run test-cypress-no-build --folder ${{ matrix.folder }}
-        env: TERM=xterm
+      env:
+        TERM: xterm
 
     - name: Upload Cypress recording upon failure
       uses: actions/upload-artifact@v2
